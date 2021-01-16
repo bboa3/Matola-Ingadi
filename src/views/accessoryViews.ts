@@ -1,4 +1,4 @@
-import { Photos } from '@prisma/client';
+import { Accessories } from '@prisma/client';
 
 interface Accessory {
   paths: string[]
@@ -6,24 +6,24 @@ interface Accessory {
 }
 
 export default {
-  render(accessory: Photos) {
+  render(accessories: Accessories) {
 
-    const photos = accessory.Accessories as unknown;
+    const unknownPhotos = accessories.photos as unknown;
 
-    const images = photos as Accessory
+    const accessory = unknownPhotos as Accessory
 
     return {
-      id: accessory.id,
+      id: accessories.id,
       accessory: {
-        paths: images.paths.map(path => {
-          return `http://localhost:${process.env.HTTP_PORT}/uploads/images/${path}`
+        paths: accessory.paths.map(path => {
+          return `${process.env.URL}/uploads/images/${path}`
         }),
-        category: images.category
+        category: accessory.category
       }
     };
   },
 
-  renderMany(accessories: Photos[]) {
+  renderMany(accessories: Accessories[]) {
     return accessories.map(accessory => this.render(accessory));
   }
 }
