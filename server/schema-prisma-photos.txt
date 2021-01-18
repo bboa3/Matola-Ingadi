@@ -5,16 +5,3 @@ Accessory = {
   ],
   category: 'copos'
 }
-
-
-Events = {
-  casamentos: [
-    'calfkd-349',
-    'calfkd-3r689',
-  ]
-
-  aniversrios: [
-    'calfkd-349',
-    'calfkd-3r689',
-  ]
-}

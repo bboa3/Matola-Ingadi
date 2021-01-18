@@ -154,11 +154,11 @@
     },
     {
       "tag": "CreateModel",
-      "model": "Photos"
+      "model": "Events"
     },
     {
       "tag": "CreateField",
-      "model": "Photos",
+      "model": "Events",
       "field": "id",
       "type": "String",
       "arity": "Required"
@@ -168,7 +168,100 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Photos",
+          "model": "Events",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Events",
+      "field": "title",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Events",
+      "field": "description",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Events",
+      "field": "photos",
+      "type": "Json",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Events",
+      "field": "created_at",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Events",
+          "field": "created_at"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Events",
+          "field": "created_at"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Events",
+      "field": "updated_at",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Events",
+          "field": "updated_at"
+        },
+        "directive": "updatedAt"
+      }
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Accessories"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Accessories",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Accessories",
           "field": "id"
         },
         "directive": "id"
@@ -179,7 +272,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Photos",
+          "model": "Accessories",
           "field": "id"
         },
         "directive": "default"
@@ -191,7 +284,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Photos",
+          "model": "Accessories",
           "field": "id"
         },
         "directive": "default"
@@ -201,17 +294,10 @@
     },
     {
       "tag": "CreateField",
-      "model": "Photos",
-      "field": "Accessories",
+      "model": "Accessories",
+      "field": "photos",
       "type": "Json",
-      "arity": "Optional"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Photos",
-      "field": "Events",
-      "type": "Json",
-      "arity": "Optional"
+      "arity": "Required"
     }
   ]
 }

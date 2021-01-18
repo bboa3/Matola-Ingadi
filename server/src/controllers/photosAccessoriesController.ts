@@ -11,53 +11,53 @@ const prisma = new PrismaClient();
 
 export default {
   async index(request: Request, response: Response) {
-    const accessories = await prisma.photos.findMany();
+    const photos = await prisma.accessories.findMany();
 
-    if(!accessories) 
-    return response.status(400).json({error: 'Não foi encontrado nenhum acessório'});
+    if(!photos) 
+    return response.status(404).json({error: 'Não foi encontrado nenhum acessório'});
 
-    response.status(200).json(accessoryViews.renderMany(accessories));
+    response.status(200).json(accessoryViews.renderMany(photos));
   },
 
   async findById(request: Request, response: Response) {
     const { id } = request.params;
 
-    const accessoryFound = await prisma.photos.findUnique({
+    const accessory = await prisma.accessories.findUnique({
       where: { id }
     });
 
-    if(!accessoryFound)
-    return response.status(400).json({error: 'Categoria não encontrada'});
+    if(!accessory)
+    return response.status(404).json({error: 'Categoria não encontrada'});
 
-    response.status(200).json(accessoryViews.render(accessoryFound))
+    response.status(200).json(accessoryViews.render(accessory))
   },
 
   async update(request: Request, response: Response) {
     const { id, category } = request.body;
     const requestImages = request.files as Express.Multer.File[];
 
-    const accessoryFound = await prisma.photos.findUnique({
+    const accessory = await prisma.accessories.findUnique({
       where: { id },
       select: {
-        Accessories: true
+        photos: true
       }
     });
 
-    if(!accessoryFound)
-    return response.status(400).json({error: 'Categoria não encontrada'});
+    if(!accessory)
+    return response.status(404).json({error: 'Categoria não encontrada'});
 
-    const accessory = accessoryFound.Accessories as unknown;
+    const unknownPhotos = accessory.photos as unknown;
 
-    const images = accessory as Accessory
+    const photos = unknownPhotos as Accessory
 
     requestImages.forEach(image => {
-      images.paths.unshift(image.filename);
+      photos.paths.unshift(image.filename);
     })
 
-    const updatedAccessory = await prisma.photos.update({
+    const updatedAccessory = await prisma.accessories.update({
       where: { id },
       data: {
-        Accessories: images as any
+        photos: photos as any
       }
     })
 
@@ -67,31 +67,31 @@ export default {
   async delete(request: Request, response: Response) {
     const { id, imageIndex } = request.body;
 
-    const accessoryFound = await prisma.photos.findUnique({
+    const accessories = await prisma.accessories.findUnique({
       where: { id },
       select: {
-        Accessories: true
+        photos: true
       }
     });
 
-    if(!accessoryFound)
-    return response.status(400).json({error: 'A imagem não foi encontrada'});
+    if(!accessories)
+    return response.status(404).json({error: 'A imagem não foi encontrada'});
 
-    const accessory = accessoryFound.Accessories as unknown;
+    const unknownAccessory = accessories.photos as unknown;
 
-    const images = accessory as Accessory;
+    const accessory = unknownAccessory as Accessory;
 
-    const updatedImages = images.paths.filter((image, index) => {
+    const updatedPaths = accessory.paths.filter((path, index) => {
       if(index !== imageIndex)
-      return image;
+      return path;
     });
     
-    const updatedAccessory = await prisma.photos.update({
+    const updatedAccessory = await prisma.accessories.update({
       where: { id },
       data: {
-        Accessories: {
-          category: images.category as any,
-          paths: updatedImages as any
+        photos: {
+          category: accessory.category as any,
+          paths: updatedPaths as any
         }
       }
     })
@@ -104,30 +104,30 @@ export default {
 
     const requestImages = request.files as Express.Multer.File[];
 
-    const photos = await prisma.photos.findMany({
+    const accessories = await prisma.accessories.findMany({
      
     })
 
-    const accessory = photos.filter(photo => {
-      const accessory = photo.Accessories as unknown;
-      const images = accessory as Accessory;
+    const accessoryCategory = accessories.map(accessory => {
+      const unknownPhotos = accessory.photos as unknown;
+      const photos = unknownPhotos as Accessory;
       
-      if(images.category === category)
-      return images.category
+      if(photos.category === category)
+      return photos.category
     })
 
-    if(accessory.length >= 1)
+    if(accessoryCategory.length >= 1)
     return response.status(400).json({error: 'Esta categoria já existe, crie outra.'})
 
-    const images = requestImages.map(image => {
+    const paths = requestImages.map(image => {
       return image.filename
     })
 
-    const newAccessory = await prisma.photos.create({
+    const newAccessory = await prisma.accessories.create({
       data: {
-        Accessories: {
+        photos: {
           category,
-          paths: images
+          paths: paths
         }
       }
     })
