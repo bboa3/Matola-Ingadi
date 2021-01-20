@@ -5,36 +5,40 @@ export default createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #215737;
 }
 
 body {
-  background: var(--white);
+  background: var(--color-white);
+  font-size: 1.8rem;
+  font-family: 'Trajan Pro Regular', serif;
 
-  font-size: 1.9rem;
-  line-height: 1.87;
-  letter-spacing: .02rem;
-  font-family: Didot;
+  .sweet-loading {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-h1, h2, h3, h4 {
-  color: #215737;
+body p {
+  line-height: 1.5;
 }
 
-:root {
-    --dark: rgb(36, 41, 46);
-    --white: #ffffff;
+h1, h2, h3, button, input {
+  font-family: 'Trajan Pro Bold', 'serif Bold';
+}
 
-    --primary: #BF0B3B;
-    --light-gray: #E6E6F0;
-    --yellow: #c39d42;
-    --dark-gray: #404040;
-    --supper-dark-gray: #262626;
-
+:root { 
+    --color-white: #fff;
+    --color-primary: #232136;
+    --color-yellow: #fdb324;
+    --color-yellow-dark: #b27824;
+    
     font-size: 60%;
   }
 
-  @media (min-width: 700px){
+  @media (min-width: 738px){
     :root {
       font-size: 62.5%;
     }

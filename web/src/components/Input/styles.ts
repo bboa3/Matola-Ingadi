@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
-
 const Input = styled.input`
-  width: 95%;
-  margin: 0.6rem;
-  outline: 0;
+  width: 100%;
+  height: 3rem;
+  
   border: none;
-  border-bottom: 1px solid var(--dark-gray);
-
+  border-bottom: 2px solid var(--color-link-shadow);
+  outline: 0;
+  
+  font-size: 1.6rem;
+  
+  padding: 0 0.8rem;
+  margin-bottom: 0.8rem;
   background: transparent;
 `;
 

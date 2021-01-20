@@ -1,82 +1,86 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import MenuIcon from '@material-ui/icons/Menu';
-import { 
-  Container,
-  Nav, 
-  Logo,
-  Options,
-  Option,  
-  MenuToggleBar 
-} from './styles';
-
+import React, { useRef } from 'react';
+import { motion, useCycle } from 'framer-motion';
+import { useMedia  } from 'react-media';
+import { Link } from 'react-router-dom';
+import { jumper } from '../../utils';
 import images from '../../assets/images';
 import icons from '../../assets/icons';
 
-const Header: React.FC = () => {
-  const [ menuId, setMenuId ] = useState('closeMenu');
-  const [ active, setActive  ] = useState({left: '6.8rem'});
-  const HandleMenu = () => {
-    menuId === 'openMenu' ? setMenuId('closeMenu') : setMenuId('openMenu');
+import { 
+  Container, 
+  MenuToggleBar,
+  Logo,
+  Options,
+  Option,
+  KingIcon
+} from './styles';
+
+interface Props {
+  homePage: boolean
+}
+
+const variants = {
+  open: {
+    y: 0,
+    transition: {
+      y: {duration: 1, stiffness: 1000, velocity: -100 }
+    }
+  },
+  closed: {
+    y: "-53vh",
+    transition: {
+      y: {duration: 1, stiffness: 1000}
+    }
   }
+};
+
+const Header: React.FC<Props> = ({homePage}) => {
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  const containerRef = useRef(null);
+
+  const isSmallScreen = useMedia({ query: "(max-width: 738px)" });
+  const smallScreenVariants = isSmallScreen ? variants : {};
 
   return (
     <Container>
-      <MenuToggleBar onClick={HandleMenu}>
-        <MenuIcon />
-      </MenuToggleBar>
-
-      <Nav>
+      <motion.div
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        ref={containerRef}
+      >
         <Logo>
-          <img src={images.logo} alt=""/>
+          <a
+            href="/#AISupremo-container" 
+            onClick={(_e) => {
+              if(!homePage)
+              return ''
+              jumper('#AISupremo-container')
+              toggleOpen()
+            }}
+          >
+            <img src={images.logo} alt="Matola Ingadi logo"/>
+          </a>
         </Logo>
 
-        <Options id={menuId}>
+        <MenuToggleBar onClick={() => {toggleOpen()}}>
+          Menu
+        </MenuToggleBar>
 
-          <motion.span
-            animate={active}
-          >
-            <img src={icons.pointer} alt="active"/>
-          </motion.span>
-          <Option>
-            <a 
-              href="#guest"
-              onClick={e => {setActive({left: '6.8rem'})}} 
-            >
-              Matola Ingadi
-            </a>
-          </Option>
-
-          <Option>
-            <a 
-              onClick={e => {setActive({left: '19rem'})}} 
-              href="#events"
-            >
-              Eventos
-            </a>
-          </Option>
-          
-          <Option>
-            <a
-              onClick={e => {setActive({left: '29rem'})}}
-              href="#motivation"
-            >
-              Motivos
-            </a>
-          </Option>
-          
-          <Option>
-            <a 
-              onClick={e => {setActive({left: '40rem'})}}
-              href="#contacts"
-            >
-              Contactos
-            </a>
-          </Option>
-        </Options>
-      </Nav>
+        <motion.nav
+          variants={smallScreenVariants}
+        >
+          <Options>
+            <Option><Link to="">Eventos</Link></Option>
+            <Option><Link to="">Motivos</Link></Option>
+            <Option><Link to="">Contactos</Link></Option>
+            <KingIcon>
+              <img src={icons.king} alt="Rei Maputo Eventos"/>
+            </KingIcon>
+          </Options>
+        </motion.nav>
+      </motion.div>
     </Container>
   )
 }
 
-export default Header; 
+export default Header;

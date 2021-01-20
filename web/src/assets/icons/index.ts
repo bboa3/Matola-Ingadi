@@ -1,10 +1,7 @@
-import pointer from './pointer.svg';
-import mapMarker from './Small-N-Flat-Map-marker.svg';
-
+import king from './king.svg';
 
 const icons = {
-  pointer,
-  mapMarker
+  king
 }
 
 export default icons;
