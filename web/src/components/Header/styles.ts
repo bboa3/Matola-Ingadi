@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
-  width: 100vw;
+  width: 100%;
   height: 5rem;
 
   background-color: var(--color-primary);
@@ -17,9 +17,9 @@ export const Container = styled.header`
 
     > nav {
       width: 100%;
-      height: 50%;
+      height: calc(50% - 5rem);
       position: absolute;
-      top: 0;
+      top: 5rem;
       left: 0;
       right: 0;
 
@@ -29,7 +29,7 @@ export const Container = styled.header`
 
       background-color: var(--color-primary);
 
-      z-index: -1;
+      z-index: 10;
 
       @media (min-width: 738px) {
         width: fit-content;
@@ -37,13 +37,6 @@ export const Container = styled.header`
         position: unset;
 
         z-index: 0;
-      }
-
-      > span {
-        width: 20rem;
-        height: 20rem;
-        border-radius: 50%;
-        background-color: red;
       }
     }
   }
@@ -90,6 +83,7 @@ export const Option = styled.li`
     text-decoration: none;
     color: var(--color-white);
     letter-spacing: 0.3rem;
+    font-family: 'Trajan Pro Regular', serif;
 
     &:hover {
       color: #603B5A;
@@ -104,18 +98,18 @@ export const Option = styled.li`
   }
 `;
 
-export const KingIcon = styled.li`
+export const ContainerKing = styled.li`
   width: 13rem;
   height: 13rem;
   border-radius: 50%;
 
   position: absolute;
-  top: 20vh;
+  top: 17vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  > img {
+  > svg {
     width: 6rem;
   }
   background-color: var(--color-primary);

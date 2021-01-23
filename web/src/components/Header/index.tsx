@@ -4,7 +4,7 @@ import { useMedia  } from 'react-media';
 import { Link } from 'react-router-dom';
 import { jumper } from '../../utils';
 import images from '../../assets/images';
-import icons from '../../assets/icons';
+import { KingIcon } from '../../assets/icons';
 
 import { 
   Container, 
@@ -12,7 +12,7 @@ import {
   Logo,
   Options,
   Option,
-  KingIcon
+  ContainerKing
 } from './styles';
 
 interface Props {
@@ -21,15 +21,15 @@ interface Props {
 
 const variants = {
   open: {
-    y: 0,
+    x: 0,
     transition: {
-      y: {duration: 1, stiffness: 1000, velocity: -100 }
+      x: {duration: 1, stiffness: 1000, velocity: -100 }
     }
   },
   closed: {
-    y: "-53vh",
+    x: "-100vw",
     transition: {
-      y: {duration: 1, stiffness: 1000}
+      x: {duration: 1, stiffness: 1000}
     }
   }
 };
@@ -71,11 +71,11 @@ const Header: React.FC<Props> = ({homePage}) => {
         >
           <Options>
             <Option><Link to="">Eventos</Link></Option>
-            <Option><Link to="">Motivos</Link></Option>
-            <Option><Link to="">Contactos</Link></Option>
-            <KingIcon>
-              <img src={icons.king} alt="Rei Maputo Eventos"/>
-            </KingIcon>
+            <Option><Link to="">Acessórios</Link></Option>
+            <Option><Link to="">Sobre nós</Link></Option>
+            <ContainerKing>
+              <KingIcon /> 
+            </ContainerKing>
           </Options>
         </motion.nav>
       </motion.div>

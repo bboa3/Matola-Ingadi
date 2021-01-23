@@ -10,7 +10,7 @@ export default createGlobalStyle`
 body {
   background: var(--color-white);
   font-size: 1.8rem;
-  font-family: 'Trajan Pro Regular', serif;
+  font-family: 'Gentium Plus', serif;
 
   .sweet-loading {
     width: 100%;
@@ -23,10 +23,12 @@ body {
 
 body p {
   line-height: 1.5;
+  letter-spacing: 0.5px;
 }
 
 h1, h2, h3, button, input {
   font-family: 'Trajan Pro Bold', 'serif Bold';
+  color: var(--color-primary);
 }
 
 :root { 
