@@ -27,12 +27,10 @@ export const Video = styled.div`
 
     z-index: 1;
     
-    > button {
+    > div {
       width: 3.6rem;
       height: 3.6rem;
 
-      outline: none;
-      border: none;
       padding: 1.1rem;
       border: 2px solid var(--color-yellow);
       border-radius: 50%;
@@ -62,9 +60,9 @@ export const Video = styled.div`
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1030px) {
     &, span {
-      height: calc(100vh - 5rem);
+      height: 100vh;
     }
   }
 `;
@@ -109,12 +107,10 @@ export const Carousel = styled.div`
     justify-content: space-between;
     padding: 0 3%;
 
-    button {
+    div {
       width: 3.3rem;
       height: 3.3rem;
 
-      outline: none;
-      border: none;
       padding: 1.3rem;
       border: 1px solid var(--color-yellow-dark);
       border-radius: 50%;

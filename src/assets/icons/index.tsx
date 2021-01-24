@@ -15,7 +15,7 @@ export const KingIcon: React.FC = () => (
 )
 
 export const Forward: React.FC = () => (
-  <button>
+  <div>
     <svg width="22" height="30" viewBox="0 0 22 30" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0)">
         <path d="M11.5128 15.1151L0.512817 1.68797L1.74359 0.153442L22.5128 15.1151L1.74359 30.1534L0.512817 28.5422L11.5128 15.1151Z" fill="#B27824"/>
@@ -26,13 +26,13 @@ export const Forward: React.FC = () => (
         </clipPath>
       </defs>
     </svg>
-  </button>
+  </div>
 )
 
 export const Back: React.FC = () => (
-  <button>
+  <div>
     <svg width="23" height="31" viewBox="0 0 23 31" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M11.5128 15.1918L22.5128 28.6189L21.2821 30.1534L0.512817 15.1918L21.2821 0.153442L22.5128 1.7647L11.5128 15.1918Z" fill="#B27824"/>
     </svg>
-  </button>
+  </div>
 )
