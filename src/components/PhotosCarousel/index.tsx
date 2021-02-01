@@ -1,12 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useState, useCallback, useRef } from 'react';
 import Media from 'react-media';
 
 import {
   Back as BackButton, 
   Forward as ForwardButton
 } from '../../assets/icons';
-import '../../assets/glider/styles.css';
-import Glider from '../../assets/glider/glider';
 
 import { Container, SlideButtons } from './styles';
 
@@ -16,24 +14,49 @@ interface Props {
   animationDelay: number
 }
 
-
 const PhotosCarousel: React.FC<Props> = React.memo(({
   title, 
   images, 
   animationDelay
 }) => {
+  const [ activeSlide, setActiveSlide ] = useState(0);
 
-  useEffect(() => {
-    new Glider(document.querySelector('.glider'), {
-      slidesToShow: 1,
-      draggable: true,
-      arrows: {
-        prev: '.prev',
-        next: '.next'
-      }
-    });
-  })
-  
+  const backFunction = () => {
+    prevSlide();
+    resetTimer()
+  }
+
+  const forwardFunction = () => {
+    nextSlide();
+    resetTimer(); 
+  }
+
+  const prevSlide = () => {
+    if(activeSlide === 0){
+      setActiveSlide(images.length-1)
+    }
+    else{
+      setActiveSlide(activeSlide-1)
+    }
+  }
+
+  const nextSlide = () => {
+    if(activeSlide === images.length - 1){
+      setActiveSlide(0);
+    }
+    else{
+      setActiveSlide(activeSlide + 1)
+    }
+  }
+
+  const timer = useRef(setInterval(nextSlide, animationDelay));
+
+  const resetTimer = useCallback(() => {
+    clearInterval(timer.current);
+    timer.current = setInterval(nextSlide, animationDelay);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animationDelay])
+
   return (
     <Container>
       {
@@ -52,35 +75,38 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
         )
       }
 
-      <div data-name="Single Item" className="glider-contain">
-        <div
-          id="glider-single"
-          className="glider"
-        >
-          {
-            images.map((image, index) => (
-              <div
-                key={index}
-                className="slide"
-                style={{
-                  backgroundImage: `url(${image})`
-                }}
-              >
-                hlkdgbijkasf
-                flkldshafnçsjka dfsafsdafm sa
-                agdslj fasnçklfamsdfladskfhdsi fm jdsuifgujanijdfd Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos vel odit alias, nulla distinctio nihil ipsa deserunt, voluptatem dolore perferendis eveniet eligendi fugit ipsam ad ut iure voluptatibus eum blanditiis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, debitis exercitationem recusandae, porro praesentium perspiciatis itaque earum sint labore in id explicabo! Porro quasi rem delectus natus optio iste quae.
-              </div>
-            ))
-          }
-        </div>
+      <div className="slider">
+        {
+          images.map((image, index) => {
+            if(index === activeSlide) {
+              return (
+                <div
+                  key={index}
+                  className='slide active'
+                  style={{
+                    backgroundImage: `url(${image})`
+                  }}
+                ></div>
+              )
+            } else {
+              return (
+                <div
+                  key={index}
+                  className='slide'
+                  style={{
+                    backgroundImage: `url(${image})`
+                  }}
+                ></div>
+              )
+            }
+          })
+        }
         <SlideButtons>
           <BackButton
-            aria-label="Previous"
-            className="prev"
+            backFunction={backFunction}
           />
           <ForwardButton
-            aria-label="Next"
-            className="next"
+            forwardFunction={forwardFunction}
           />
         </SlideButtons>
       </div>
