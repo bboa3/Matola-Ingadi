@@ -2,9 +2,51 @@ import React, { Fragment } from 'react';
 import Media from 'react-media';
 import { MapContainer} from './styles';
 
+import Button from '../Button';
+
 import images from '../../assets/images';
 
-const Map: React.FC = () => (
+interface Props {
+  title: string
+  descriptions: string[]
+  buttonText: string
+  isButtonToOutsideOfWebsite: boolean
+  buttonUrl: string
+}
+
+
+const MapContent: React.FC<Props> = ({
+  title,
+  descriptions,
+  buttonText,
+  isButtonToOutsideOfWebsite,
+  buttonUrl
+}) => (
+  <>
+    <h3>
+      {title}
+    </h3>
+    {
+      descriptions.map(description => <p>{description}</p>)
+    }
+
+    <Button 
+      url={buttonUrl}
+      color='var(--color-primary)'
+      backgroundColor='var(--color-yellow-dark)'
+      text={buttonText}
+      isToOutsideOfWebsite={isButtonToOutsideOfWebsite}
+    />
+  </>
+)
+
+const Map: React.FC<Props> = ({
+  title,
+  descriptions,
+  buttonText,
+  isButtonToOutsideOfWebsite,
+  buttonUrl
+}) => (
   <Media queries={{
     small: "(max-width: 738px)",
     medium: "(min-width: 738px) and (max-width: 992px)",
@@ -18,15 +60,13 @@ const Map: React.FC = () => (
               backgroundImage: `url(${images.mapMobile})`
             }}
           >
-          <h3>
-            venha viver a experiência
-          </h3>
-          <p>
-            Estamos logo depois do Externato Cantinho do Céu e Salesianos vindo pela Shoprite da Matola
-          </p>
-          <button>
-            Visite Matola Ingadi
-          </button>
+          <MapContent
+            title={title}
+            descriptions={descriptions}
+            buttonText={buttonText}
+            isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
+            buttonUrl={buttonUrl}
+          />
         </MapContainer>
       )}
       {matches.medium && (
@@ -35,15 +75,13 @@ const Map: React.FC = () => (
             backgroundImage: `url(${images.mapTablet})`
           }}
         >
-          <h3>
-            venha viver a experiência
-          </h3>
-          <p>
-            Estamos logo depois do Externato Cantinho do Céu e Salesianos vindo pela Shoprite da Matola
-          </p>
-          <button>
-            Visite Matola Ingadi
-          </button>
+         <MapContent
+            title={title}
+            descriptions={descriptions}
+            buttonText={buttonText}
+            isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
+            buttonUrl={buttonUrl}
+         />
         </MapContainer>
       )}
       {matches.large && (
@@ -52,13 +90,13 @@ const Map: React.FC = () => (
             backgroundImage: `url(${images.map})`
           }}
         >
-          <h3>venha viver a experiência</h3>
-          <p>
-            Estamos logo depois do Externato Cantinho do Céu e Salesianos vindo pela Shoprite da Matola
-          </p>
-          <button>
-            Visite Matola Ingadi
-          </button>
+          <MapContent
+            title={title}
+            descriptions={descriptions}
+            buttonText={buttonText}
+            isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
+            buttonUrl={buttonUrl}
+          />
         </MapContainer>
       )}
     </Fragment>

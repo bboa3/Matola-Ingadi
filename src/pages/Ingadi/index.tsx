@@ -1,14 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Header from '../../components/Header';
 import Map from '../../components/Map';
+import PhotosCarousel from '../../components/PhotosCarousel';
+import History from '../../components/History';
 import { 
   Container,
   Video,
-  BackButton,
-  ForwardButton,
   IngadiKing,
-  Carousel
+  CarouselAndMapContainer
 } from './styles';
+
+import { Play as PlayButton } from '../../assets/icons';
 
 import images from '../../assets/images';
 
@@ -22,11 +24,7 @@ const Ingadi: React.FC = () => {
         <Video>
           <img src={images.ingadiWedding} alt="Casamento Ingadi"/>
           <span>
-            <div>
-              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" className="svg-inline--fa fa-play fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
-              </svg>
-            </div>
+            <PlayButton />
           </span>
         </Video>
         <section>
@@ -36,24 +34,41 @@ const Ingadi: React.FC = () => {
               O nosso objetivo é tornar o seu evento único e autentico. Abrimos as portas da nossa casa para que venha ser rei . O momento especial também deve ser cheio de Glamour, por isso nunca poupamos esforço no nosso oficio de serventia e preparação para as suas celebrações.
             </p>
           </IngadiKing>
-          <Carousel>
-            <div 
-              style={{
-                backgroundImage: `url(${images.weddingLightNight})`
-              }}
-            >
-              <BackButton />
-              <ForwardButton />
-            </div>
 
-            <Map />
+          <CarouselAndMapContainer>
+            <PhotosCarousel 
+              images={[images.weddingLightNight, images.weddingPiscina]}
+              animationDelay={10000}
+            />
+            <Map
+              title="venha viver a experiência"
+              descriptions={[
+                'Estamos logo depois do Externato Cantinho do Céu e Salesianos vindo pela Shoprite da Matola'
+              ]}
+              buttonText="Visite Matola Ingadi"
+              isButtonToOutsideOfWebsite={false}
+              buttonUrl="/visitar-matola-ingadi"
+            />
+          </CarouselAndMapContainer>
 
-          </Carousel>
+          <History
+            title="Celebramos O Amor Em Todas As Suas Formas e Cores"
+            popUpTitle="Desde 2015"
+            description="
+              Alimentamos cumplicidade, autenticidade, espontaneidade. 
+              Organizamos casamentos que surpreendem, provocam reações, surpreendem e
+              perturbam.
+            "
+            image1={images.weddings}
+            image2={images.AiVemONoivo}
+            image1Alt='Salão de casamentos'
+            image2Alt="Ai vem o noivo"
+          />
         </section>
 
         <div style={{height: 1100}}>
 
-          </div>
+        </div>
       </Container>
     </>
   )
