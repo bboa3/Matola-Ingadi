@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback, useRef } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Media from 'react-media';
 
 import {
@@ -23,39 +23,29 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
 
   const backFunction = () => {
     prevSlide();
-    resetTimer()
   }
 
   const forwardFunction = () => {
     nextSlide();
-    resetTimer(); 
   }
 
   const prevSlide = () => {
-    if(activeSlide === 0){
-      setActiveSlide(images.length-1)
-    }
-    else{
-      setActiveSlide(activeSlide-1)
-    }
+    if(activeSlide === 0)
+    return setActiveSlide(images.length-1);
+    setActiveSlide(activeSlide-1)
   }
 
   const nextSlide = () => {
-    if(activeSlide === images.length - 1){
-      setActiveSlide(0);
-    }
-    else{
-      setActiveSlide(activeSlide + 1)
-    }
+    if(activeSlide === images.length - 1)
+    return setActiveSlide(0);
+    setActiveSlide(activeSlide + 1)
   }
 
-  const timer = useRef(setInterval(nextSlide, animationDelay));
-
-  const resetTimer = useCallback(() => {
-    clearInterval(timer.current);
-    timer.current = setInterval(nextSlide, animationDelay);
+  useEffect(() => {
+    const timer = setTimeout(nextSlide, animationDelay);
+    return () => clearTimeout(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animationDelay])
+  }, [activeSlide])
 
   return (
     <Container>
