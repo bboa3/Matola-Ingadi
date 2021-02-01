@@ -3,8 +3,12 @@ import playSolid from './play-solid.svg';
 import { SlideButtonContainer } from './styles';
 
 
-interface Props {
-  className: string
+interface ForwardProps {
+  forwardFunction: () => void
+}
+
+interface BackProps {
+  backFunction: () => void
 }
 
 
@@ -28,8 +32,8 @@ export const Play: React.FC = () => (
   </div>
 )
 
-export const Forward: React.FC<Props> = ({className}) => (
-  <SlideButtonContainer className={className}>
+export const Forward: React.FC<ForwardProps> = ({forwardFunction}) => (
+  <SlideButtonContainer className="forward" onClick={forwardFunction}>
     <svg width="22" height="30" viewBox="0 0 22 30" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0)">
         <path d="M11.5128 15.1151L0.512817 1.68797L1.74359 0.153442L22.5128 15.1151L1.74359 30.1534L0.512817 28.5422L11.5128 15.1151Z" fill="#B27824"/>
@@ -43,8 +47,8 @@ export const Forward: React.FC<Props> = ({className}) => (
   </SlideButtonContainer>
 )
 
-export const Back: React.FC<Props> = ({className}) => (
-  <SlideButtonContainer className={className}>
+export const Back: React.FC<BackProps> = ({backFunction}) => (
+  <SlideButtonContainer className="back" onClick={backFunction}>
     <svg width="23" height="31" viewBox="0 0 23 31" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M11.5128 15.1918L22.5128 28.6189L21.2821 30.1534L0.512817 15.1918L21.2821 0.153442L22.5128 1.7647L11.5128 15.1918Z" fill="#B27824"/>
     </svg>
