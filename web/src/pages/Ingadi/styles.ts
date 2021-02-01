@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Back, Forward } from '../../assets/icons';
 
 export const Container = styled.main`
 `;
@@ -26,32 +25,29 @@ export const Video = styled.div`
     justify-content: center;
 
     z-index: 1;
-    
-    > button {
-      width: 3.6rem;
-      height: 3.6rem;
 
-      outline: none;
-      border: none;
-      padding: 1.1rem;
+    > div {
+      width: 4.4rem;
+      height: 4.4rem;
+      
+      padding: 1rem;
       border: 2px solid var(--color-yellow);
       border-radius: 50%;
-
-      background-color: transparent;
-
+      
       display: flex;
       justify-content: center;
       align-items: center;
-
+      
       cursor: pointer;
       transition: background-color 0.5s;
 
-      > svg path {
-        fill: var(--color-yellow);
+      > img {
+        width: 100%;
+        height: 100%;
       }
-
+      
       &:hover {
-        background-color: rgba(178, 120, 36, 0.1);
+        background-color: rgba(178, 120, 36, 0.2);
       }
     }
   }
@@ -62,9 +58,9 @@ export const Video = styled.div`
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1030px) {
     &, span {
-      height: calc(100vh - 5rem);
+      height: 100vh;
     }
   }
 `;
@@ -74,7 +70,7 @@ export const IngadiKing = styled.div`
   margin: 6rem 0;
 
   > h1 {
-    font-size: 2.8rem;
+    font-size: 2.9rem;
     margin-bottom: 2rem;
   }
 
@@ -83,61 +79,30 @@ export const IngadiKing = styled.div`
     margin: 10rem 0 16rem;
 
     > h1 {
+      max-width: 45rem;
+      font-size: 3.2rem;
       margin-bottom: 2.3rem;
+      float: center;
     }
+  }
+
+  @media (min-width: 992px) {
+    margin: 10rem 0 9rem;
   }
 `;
 
-export const Carousel = styled.div`
+export const CarouselAndMapContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 
   position: relative;
 
-  > div:nth-child(1) {
-    width: 100%;
-    height: 69vw;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 3%;
-
-    button {
-      width: 3.3rem;
-      height: 3.3rem;
-
-      outline: none;
-      border: none;
-      padding: 1.3rem;
-      border: 1px solid var(--color-yellow-dark);
-      border-radius: 50%;
-
-      background-color: transparent;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      cursor: pointer;
-      transition: background-color 0.5s;
-
-      &:hover {
-        background-color: rgba(178, 120, 36, 0.1);
-      }
-    }
-
-    @media (min-width: 738px) {
-      height: 59vw;
-    }
+  padding-bottom: 43rem;
+  @media (min-width: 738px) {
+    padding-bottom: 64rem;
+  }
+  @media (min-width: 992px) {
+    padding-bottom: 53rem;
   }
 `;
-
-export const BackButton = styled(Back)``;
-export const ForwardButton = styled(Forward)``;

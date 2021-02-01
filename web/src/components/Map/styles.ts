@@ -14,36 +14,15 @@ export const MapContainer = styled.div`
   position: absolute;
   top: 43vw;
 
+  > div {
+    margin-top: 2rem;
+  }
+
   > h3 {
     color: var(--color-white);
     letter-spacing: 0.3rem;
     font-size: 2.1rem;
     margin-bottom: 2rem;
-  }
-
-  > p {
-    margin-bottom: 2rem;
-  }
-
-  > button {
-    width: 20rem;
-    height: 3rem;
-    
-    outline: none;
-    border: none;
-    
-    background-color: var(--color-yellow-dark);
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    cursor: pointer;
-    transition: background-color 0.5s;
-    
-    &:hover {
-      background-color: var(--color-yellow);
-    }
   }
 
   @media (min-width: 738px) {
@@ -53,11 +32,11 @@ export const MapContainer = styled.div`
     padding: 8rem 6rem;
 
     > h3 {
-      font-size: 2.6rem;
+      font-size: 2.7rem;
     }
 
-    > p {
-      margin-bottom: 3rem;
+    > div {
+      margin-top: 2rem;
     }
   }
 
@@ -67,7 +46,7 @@ export const MapContainer = styled.div`
 
     > h3 {
       width: 40rem;
-      font-size: 2.6rem;
+      font-size: 2.9rem;
     }
 
     > p {

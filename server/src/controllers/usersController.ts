@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { sign } from 'jsonwebtoken';
 import userViews from '../views/userViews';
 
 import validator from '../errors/userValidator';
@@ -15,6 +16,12 @@ export default {
     if(!user)
     return response.status(404).json({error: 'usuário não encontrado'});
 
+    response.cookie('grid'
+      sign({id: user.id},
+      process.env.SECRET_STRING, 
+      {expiresIn: '7d'}),
+      {httpOnly: true}
+    )
     response.json(userViews.render(user));
   },
 
