@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Media from 'react-media';
 import { MapContainer} from './styles';
 
-import Button from '../Button';
+import Button from '../NavButton';
 
 import images from '../../assets/images';
 

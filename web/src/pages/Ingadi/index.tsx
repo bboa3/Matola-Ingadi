@@ -38,7 +38,7 @@ const Ingadi: React.FC = () => {
           <CarouselAndMapContainer>
             <PhotosCarousel 
               images={[images.weddingLightNight, images.weddingPiscina]}
-              animationDelay={10000}
+              animationDelay={5000}
             />
             <Map
               title="venha viver a experiência"

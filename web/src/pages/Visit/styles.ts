@@ -16,6 +16,7 @@ export const Container = styled.main`
 
     > h1 {
       font-size: 2.1rem;
+      font-family: 'Crimson Roman', Gentium Plus, sans-serif;
       text-transform: none;
       font-weight: normal;
     }
@@ -35,7 +36,7 @@ export const Container = styled.main`
     > span {
       width: 86%;
 
-      >  h1 {
+      > h1 {
         max-width: 50rem;
       }
     }

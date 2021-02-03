@@ -86,7 +86,7 @@ export const Option = styled.li`
     font-family: 'Trajan Pro Regular', serif;
 
     &:hover {
-      color: #603B5A;
+      color: var(--color-adjust);
     }
   }
   @media (min-width: 738px) {

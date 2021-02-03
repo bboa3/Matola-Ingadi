@@ -14,17 +14,17 @@ const Photos: React.FC = () => {
       <Container>
         <PhotosCarousel 
           images={[images.weddingLightNight, images.ingadiWedding]}
-          animationDelay={10000}
+          animationDelay={5000}
           title="Fotos de Casamentos"
         />
         <PhotosCarousel 
           images={[images.weddingLightNight, images.ingadiWedding]}
-          animationDelay={10000}
+          animationDelay={6000}
           title="Fotos de Aniversários"
         />
         <PhotosCarousel 
           images={[images.weddingLightNight, images.ingadiWedding]}
-          animationDelay={10000}
+          animationDelay={7000}
           title="Fotos de Graduações"
         />
       </Container>

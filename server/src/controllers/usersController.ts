@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { sign } from 'jsonwebtoken';
 import userViews from '../views/userViews';
 
 import validator from '../errors/userValidator';
 import mailer from '../modules/mailer';
+import sendRefreshToken from '../Auth/sendRefreshToken';
+import { createRefreshToken } from '../views/auth/auth';
 
 const prisma = new PrismaClient();
 
@@ -12,28 +13,29 @@ export default {
   async index(request: Request, response: Response) {
     const { email } = request.body;
 
-    const user = await prisma.users.findUnique({where: {email}});
+    const user = await prisma.users.findUnique({where: { email }});
     if(!user)
     return response.status(404).json({error: 'usuário não encontrado'});
 
-    response.cookie('grid'
-      sign({id: user.id},
-      process.env.SECRET_STRING, 
-      {expiresIn: '7d'}),
-      {httpOnly: true}
-    )
     response.json(userViews.render(user));
   },
 
   async update(request: Request, response: Response) {
-    const { username, password } = request.body;
+    const { username, password, payload } = request.body;
+    
+    const user = await prisma.users.findUnique({where: { id: payload.id }});
+    if(!user)
+    return response.status(404).json({error: 'usuário não encontrado'});
+
+    sendRefreshToken(response, createRefreshToken(user));
+    response.json(userViews.render(user));
   },
 
   async create(request: Request, response: Response) {
     const { 
       name,
       email,
-      phone,
+      phone_number,
       customerEvent
     } = request.body;
 
@@ -45,13 +47,13 @@ export default {
         text: `
           NOME: ${name} 
           EMAIL: ${email ? email : 'Sem endereço de email'} 
-          TELEFONE: ${phone} 
+          TELEFONE: ${phone_number} 
           EVENTO: ${customerEvent}
         `, 
         html: `
           <b> NOME:   ${name} 
           <br/><br/> EMAIL:   ${email ? email : 'Sem endereço de email'} 
-          <br/><br/> TELEFONE:   ${phone} 
+          <br/><br/> TELEFONE:   ${phone_number} 
           <br/><br/> EVENTO:   ${customerEvent}</b>
         `, 
       });
@@ -68,13 +70,13 @@ export default {
       const user = await prisma.users.findUnique({ where: {email} })
 
       if(!user) {
-        await validator.user(name, email, phone );
+        await validator.user(name, email, phone_number );
 
         await prisma.users.create({
           data: {
             name,
             email,
-            phone,
+            phone_number,
           }
         })
       }

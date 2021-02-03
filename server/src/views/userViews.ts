@@ -1,10 +1,10 @@
 import { Users } from '@prisma/client';
-import { sign } from 'jsonwebtoken';
+import { createAccessToken } from './auth/auth';
 
 export default {
   render(user: Users) {
     return {
-      accessToken: sign({id: user.id}, process.env.SECRET_STRING, {expiresIn: '24h'}),
+      accessToken: createAccessToken(user),
       name: user.name,
       phone: user.phone,
       email: user.email,
