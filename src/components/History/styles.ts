@@ -5,6 +5,17 @@ export const Container = styled.div`
 
   @media (min-width: 738px) {
     margin-top: 13rem;
+
+    > p {
+      max-width: 40rem;
+      margin-top: 10vh;
+      float: right;
+    }
+  }
+  @media (min-width: 1030px) {
+    > p {
+      margin-right: 10vw;
+    }
   }
 `;
 
@@ -37,7 +48,7 @@ export const Wedding = styled.div`
 
   @media (min-width: 738px) {
     > div {
-      max-width: 26rem;
+      max-width: 29rem;
     }
 
     > span h3 {
@@ -92,7 +103,7 @@ export const Place = styled.div`
 
 export const ImageContainer = styled.div`
   width: 80%;
-  margin-top: 5rem;
+  margin-top: 2rem;
   float: right;
   > img {
     width: 100%;

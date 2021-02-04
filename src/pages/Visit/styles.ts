@@ -1,60 +1,52 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
-  width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  padding: 4rem 0;
+  padding: 3rem 0;
+`;
 
-  > span {
-    width: 90%;
-    margin-bottom: 3rem;
+export const MinHeader = styled.div`
+  width: 90%;
+  height: 100vh;
+  margin-bottom: 3rem;
 
-    > h1 {
-      font-size: 2.1rem;
-      font-family: 'Crimson Roman', Gentium Plus, sans-serif;
-      text-transform: none;
-      font-weight: normal;
-    }
-  }
- 
-  > div {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    position: relative;
-    top: -43vw;
+  > h1 {
+    font-size: 2.1rem;
+    font-family: 'Crimson Roman', Gentium Plus, sans-serif;
+    text-transform: none;
+    font-weight: normal;
   }
 
   @media (min-width: 738px) {
-    > span {
-      width: 86%;
-
-      > h1 {
-        max-width: 50rem;
-      }
-    }
-
-    > div {
-      top: -46vw;
+    width: 86%;
+    > h1 {
+      max-width: 50rem;
     }
   }
 
   @media (min-width: 992px) {
-    padding: 5rem 0;
-    
-    > span {
-      margin-bottom: 6rem;
-    }
+    margin-bottom: 6rem;
+  }
+`;
 
-    > div {
-      top: -52vw;
-    }
+export const MapContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 3.3vw;
+
+  @media (min-width: 738px) {
+    top: -26vw;
+  }
+
+  @media (min-width: 992px) {
+    top: -38vw;
   }
 `;

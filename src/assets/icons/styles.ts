@@ -4,7 +4,7 @@ export const SlideButtonContainer = styled.div`
   width: 3.3rem;
   height: 3.3rem;
   
-  padding: 1.3rem;
+  padding: 1.1rem;
   border: 1px solid var(--color-yellow-dark);
   border-radius: 50%;
   
@@ -15,7 +15,7 @@ export const SlideButtonContainer = styled.div`
   align-items: center;
   
   cursor: pointer;
-  transition: background-color 0.5s;
+  transition: ease-out background-color 0.5s;
   
   > svg {
     width: 100%;
@@ -23,6 +23,6 @@ export const SlideButtonContainer = styled.div`
   }
   
   &:hover {
-    background-color: rgba(178, 120, 36, 0.1);
+    background-color: rgba(178, 120, 36, 0.3);
   }
 `

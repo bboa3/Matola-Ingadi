@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
+  margin-bottom: 5rem;
 `;
 
 export const Video = styled.div`
@@ -98,11 +99,43 @@ export const CarouselAndMapContainer = styled.div`
 
   position: relative;
 
-  padding-bottom: 43rem;
+  padding-bottom: 39rem;
   @media (min-width: 738px) {
-    padding-bottom: 64rem;
+    padding-bottom: 56rem;
   }
   @media (min-width: 992px) {
-    padding-bottom: 53rem;
+    padding-bottom: 36rem;
+  }
+`;
+
+export const Benefits = styled.div`
+  margin-top: 43vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 5%;
+
+  > h2 {
+    max-width: 79rem;
+    font-size: 2.9rem;
+    margin-bottom: 2rem;
+  }
+
+  > p {
+    max-width: 79rem;
+  }
+
+  @media (min-width: 738px) {
+    > h1 {
+      max-width: 45rem;
+      font-size: 3.2rem;
+      margin-bottom: 2.3rem;
+      float: center;
+    }
+  }
+  @media (min-width: 992px) {
+    margin-top: 40rem;
   }
 `;

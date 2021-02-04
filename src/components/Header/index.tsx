@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { motion, useCycle } from 'framer-motion';
 import { useMedia  } from 'react-media';
 import { Link } from 'react-router-dom';
-import { jumper } from '../../utils';
 import images from '../../assets/images';
 import { KingIcon } from '../../assets/icons';
 
@@ -14,10 +13,6 @@ import {
   Option,
   ContainerKing
 } from './styles';
-
-interface Props {
-  homePage: boolean
-}
 
 const variants = {
   open: {
@@ -34,7 +29,7 @@ const variants = {
   }
 };
 
-const Header: React.FC<Props> = ({homePage}) => {
+const Header: React.FC = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
 
@@ -49,17 +44,9 @@ const Header: React.FC<Props> = ({homePage}) => {
         ref={containerRef}
       >
         <Logo>
-          <a
-            href="/#AISupremo-container" 
-            onClick={(_e) => {
-              if(!homePage)
-              return ''
-              jumper('#AISupremo-container')
-              toggleOpen()
-            }}
-          >
+          <Link to="/">
             <img src={images.logo} alt="Matola Ingadi logo"/>
-          </a>
+          </Link>
         </Logo>
 
         <MenuToggleBar onClick={() => {toggleOpen()}}>
@@ -70,7 +57,7 @@ const Header: React.FC<Props> = ({homePage}) => {
           variants={smallScreenVariants}
         >
           <Options>
-            <Option><Link to="/">Eventos</Link></Option>
+            <Option><Link to="/nossas-lembranças/images">Eventos</Link></Option>
             <Option><Link to="/acessórios-de-eventos">Acessórios</Link></Option>
             <Option><Link to="">Sobre nós</Link></Option>
             <ContainerKing>
