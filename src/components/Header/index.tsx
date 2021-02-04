@@ -70,8 +70,8 @@ const Header: React.FC<Props> = ({homePage}) => {
           variants={smallScreenVariants}
         >
           <Options>
-            <Option><Link to="">Eventos</Link></Option>
-            <Option><Link to="">Acessórios</Link></Option>
+            <Option><Link to="/">Eventos</Link></Option>
+            <Option><Link to="/acessórios-de-eventos">Acessórios</Link></Option>
             <Option><Link to="">Sobre nós</Link></Option>
             <ContainerKing>
               <KingIcon /> 
