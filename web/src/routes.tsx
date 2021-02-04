@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Visit from './pages/Visit';
 import Ingadi from './pages/Ingadi';
 import Accessories from './pages/Accessories';
 import Photos from './pages/Photos';
-import Visit from './pages/Visit';
 
 const Router: React.FC = () => (
   <BrowserRouter>

@@ -4,13 +4,12 @@ import PhotosCarousel from '../../components/PhotosCarousel';
 import { Container } from './styles';
 
 import images from '../../assets/images';
+import Footer from '../../components/Footer';
 
 const Photos: React.FC = () => {
   return (
     <>
-      <Header
-        homePage={false}
-      />
+      <Header />
       <Container>
         <PhotosCarousel 
           images={[images.weddingLightNight, images.ingadiWedding]}
@@ -28,6 +27,9 @@ const Photos: React.FC = () => {
           title="Fotos de Graduações"
         />
       </Container>
+      <Footer
+        homePage={false}
+      />
     </>
   )
 }

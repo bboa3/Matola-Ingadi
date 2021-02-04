@@ -6,6 +6,7 @@ import api from '../../services/api';
 import { Container, Form, AccessoriesContainer } from './styles';
 import AccessoriesCarousel from '../../components/AccessoriesCarousel';
 import images from '../../assets/images';
+import Footer from '../../components/Footer';
 
 const Accessories: React.FC = () => {
   const [ accessory, setAccessory ] = useState('');
@@ -26,9 +27,7 @@ const Accessories: React.FC = () => {
 
   return (
     <>
-      <Header
-        homePage={false}
-      />
+      <Header />
       <Container>
         <Form onSubmit={handlerForm}>
           <legend>Vejá fotos dos nossos acessórios</legend>
@@ -59,6 +58,9 @@ const Accessories: React.FC = () => {
           />
         </AccessoriesContainer>
       </Container>
+      <Footer
+      homePage={false}
+      />
     </>
   )
 }

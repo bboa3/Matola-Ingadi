@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Media from 'react-media';
 import Button from '../NavButton';
 import { 
   Container,
@@ -47,9 +48,30 @@ const History: React.FC<Props> = React.memo(({
           isToOutsideOfWebsite={false}
         />
       </div>
-      <p>{description}</p>
+      <Media queries={{
+        small: "(max-width: 738px)"
+      }}>
+        {matches => (
+          <Fragment>
+            {matches.small && (
+              <p>{description}</p>
+            )}
+          </Fragment>
+        )}
+      </Media>
     </Place>
     <ImageContainer><img src={image2} alt={image2Alt}/></ImageContainer>
+    <Media queries={{
+        large: "(min-width: 738px)"
+      }}>
+        {matches => (
+        <Fragment>
+          {matches.large && (
+            <p>{description}</p>
+          )}
+        </Fragment>
+      )}
+    </Media>
   </Container>
 ))
 

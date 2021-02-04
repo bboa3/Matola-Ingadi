@@ -7,20 +7,20 @@ import {
   Container,
   Video,
   IngadiKing,
-  CarouselAndMapContainer
+  CarouselAndMapContainer,
+  Benefits
 } from './styles';
 
 import { Play as PlayButton } from '../../assets/icons';
 
 import images from '../../assets/images';
+import Footer from '../../components/Footer';
 
 const Ingadi: React.FC = () => {
   return (
     <>
-      <Header
-        homePage={true}
-      />
-      <Container>
+      <Header />
+      <Container id="matola-ingadi-main">
         <Video>
           <img src={images.ingadiWedding} alt="Casamento Ingadi"/>
           <span>
@@ -37,7 +37,7 @@ const Ingadi: React.FC = () => {
 
           <CarouselAndMapContainer>
             <PhotosCarousel 
-              images={[images.weddingLightNight, images.weddingPiscina]}
+              images={[images.weddingPiscina, images.weddingLightNight]}
               animationDelay={5000}
             />
             <Map
@@ -59,17 +59,27 @@ const Ingadi: React.FC = () => {
               Organizamos casamentos que surpreendem, provocam reações, surpreendem e
               perturbam.
             "
-            image1={images.weddings}
-            image2={images.AiVemONoivo}
+            image1={images.AiVemONoivo}
+            image2={images.weddings}
             image1Alt='Salão de casamentos'
             image2Alt="Ai vem o noivo"
           />
+
+          <Benefits>
+            <h2>Escolha Matola Ingadi</h2>
+            <p>
+              Fazemos  Decoração Personalizada para cada tipo de evento.  Total de 14 000 m² de Área.  
+              Salão para 350 Convidados. Estacionamento para mais de 200 carros. Espaço para cerimonia civil.
+              Cozinha pronta para o uso nos seus eventos. Suíte para os Noivos. Iluminação Decorativa nas suas 
+              festas. Gerador disponível em todo o evento. Banheiros Feminino, Masculino e para Pessoas com 
+              Necessidades Especiais.
+            </p>
+          </Benefits>
         </section>
-
-        <div style={{height: 1100}}>
-
-        </div>
       </Container>
+      <Footer
+        homePage={false}
+      />
     </>
   )
 }

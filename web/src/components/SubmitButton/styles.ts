@@ -12,4 +12,10 @@ export const Button = styled.button`
   margin-top: 1rem;
   background-color: var(--color-adjust);
   color: var(--color-white);
+
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `;
