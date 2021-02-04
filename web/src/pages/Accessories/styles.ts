@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  padding: 3% 5%;
+  padding: 3% 0;
+  overflow: hidden;
 `;
 
 export const Form = styled.form`
+  padding: 0 5%;
+
   > legend {
     font-size: 2.4rem;
     margin-bottom: 3rem;

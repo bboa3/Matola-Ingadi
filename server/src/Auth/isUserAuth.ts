@@ -3,6 +3,7 @@ import { verify } from "jsonwebtoken";
 
 const verifyToken = (request: Request, response: Response, next: NextFunction) => {
   const bearerHeader = request.headers['authorization'];
+  const apikey = request.get('X-API-KEY')
 
   if(typeof bearerHeader === 'undefined') 
   return response.status(401).json({message: 'Not authorized'})

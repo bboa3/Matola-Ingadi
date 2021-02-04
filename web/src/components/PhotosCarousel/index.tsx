@@ -94,9 +94,11 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
         <SlideButtons>
           <BackButton
             backFunction={backFunction}
+            className="back"
           />
           <ForwardButton
             forwardFunction={forwardFunction}
+            className="forward"
           />
         </SlideButtons>
       </div>
