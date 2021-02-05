@@ -46,6 +46,7 @@ const History: React.FC<Props> = React.memo(({
           backgroundColor='var(--color-primary)'
           text='Fotos'
           isToOutsideOfWebsite={false}
+          useJump={false}
         />
       </div>
       <Media queries={{

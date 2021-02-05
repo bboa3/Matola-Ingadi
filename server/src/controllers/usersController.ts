@@ -4,8 +4,6 @@ import userViews from '../views/userViews';
 
 import validator from '../errors/userValidator';
 import mailer from '../modules/mailer';
-import sendRefreshToken from '../Auth/sendRefreshToken';
-import { createRefreshToken } from '../views/auth/auth';
 
 const prisma = new PrismaClient();
 
@@ -27,7 +25,6 @@ export default {
     if(!user)
     return response.status(404).json({error: 'usuário não encontrado'});
 
-    sendRefreshToken(response, createRefreshToken(user));
     response.json(userViews.render(user));
   },
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export const Button = styled.button`
+const Button = styled.button`
   width: 16rem;
   height: 3rem;
   letter-spacing: 0.2rem;
@@ -19,3 +19,5 @@ export const Button = styled.button`
     opacity: 0.9;
   }
 `;
+
+export default Button;

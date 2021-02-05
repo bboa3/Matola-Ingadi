@@ -36,6 +36,7 @@ const MapContent: React.FC<Props> = ({
       backgroundColor='var(--color-yellow-dark)'
       text={buttonText}
       isToOutsideOfWebsite={isButtonToOutsideOfWebsite}
+      useJump={false}
     />
   </>
 )
