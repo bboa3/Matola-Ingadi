@@ -92,6 +92,13 @@ export const IngadiKing = styled.div`
   }
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+`;
+
 export const CarouselAndMapContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -139,3 +146,36 @@ export const Benefits = styled.div`
     margin-top: 40rem;
   }
 `;
+
+export const FormContainer = styled.div`
+  margin: 5rem 5%;
+
+  > div {
+    margin-bottom: 3rem;
+
+    > h2 {
+      font-size: 2.9rem;
+      text-transform: none;
+      font-family: 'Crimson Semibold';
+    }
+  }
+
+  @media (min-width: 738px) {
+    display: flex;
+    margin: 6rem 5%;
+
+    > div {
+      margin: 1rem 3rem;
+    }
+  }
+
+  @media (min-width: 992px) {
+    margin: 7rem 5%;
+  }
+`;
+
+export const Form = styled.form`
+  > input {
+    margin-bottom: 1.3rem;
+  }
+`

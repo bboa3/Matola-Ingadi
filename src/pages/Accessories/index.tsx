@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import Header from '../../components/Header';
 import Input from '../../components/Input/styles';
-import { Button } from '../../components/SubmitButton/styles';
+import Button from '../../components/SubmitButton/styles';
 import api from '../../services/api';
 import { Container, Form, AccessoriesContainer } from './styles';
 import AccessoriesCarousel from '../../components/AccessoriesCarousel';

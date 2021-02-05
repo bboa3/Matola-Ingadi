@@ -1,22 +1,45 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
 import Header from '../../components/Header';
 import Map from '../../components/Map';
 import PhotosCarousel from '../../components/PhotosCarousel';
 import History from '../../components/History';
+import images from '../../assets/images';
+import Footer from '../../components/Footer';
 import { 
   Container,
   Video,
   IngadiKing,
+  ButtonContainer,
   CarouselAndMapContainer,
-  Benefits
+  Benefits,
+  FormContainer,
+  Form
 } from './styles';
 
 import { Play as PlayButton } from '../../assets/icons';
-
-import images from '../../assets/images';
-import Footer from '../../components/Footer';
+import Input from '../../components/Input/styles';
+import Button from '../../components/SubmitButton/styles';
+import NavButton from '../../components/NavButton';
+import api from '../../services/api';
 
 const Ingadi: React.FC = () => {
+  const [ name, setName ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ phoneNumber, setPhoneNumber ] = useState('');
+  const [ formMessage, setFormMessage ] = useState('');
+  const [ customerEvent, setCustomerEvent ] = useState('');
+
+  const FormHandler = (e: FormEvent) => {
+    e.preventDefault();
+
+    api.post('', {
+      name,
+      email,
+      phoneNumber,
+      customerEvent
+    })
+  }
+
   return (
     <>
       <Header />
@@ -33,6 +56,17 @@ const Ingadi: React.FC = () => {
             <p>
               O nosso objetivo é tornar o seu evento único e autentico. Abrimos as portas da nossa casa para que venha ser rei . O momento especial também deve ser cheio de Glamour, por isso nunca poupamos esforço no nosso oficio de serventia e preparação para as suas celebrações.
             </p>
+
+            <ButtonContainer>
+              <NavButton
+                color="var(--color-white)"
+                backgroundColor="var(--color-primary)"
+                text="Agendar evento"
+                url="#agendar-evento"
+                isToOutsideOfWebsite={false}
+                useJump={true}
+              />
+            </ButtonContainer>
           </IngadiKing>
 
           <CarouselAndMapContainer>
@@ -75,6 +109,57 @@ const Ingadi: React.FC = () => {
               Necessidades Especiais.
             </p>
           </Benefits>
+
+          <FormContainer id="agendar-evento">
+            <div>
+              <h2>Agende o seu proximo evento no Matola Ingadi</h2>
+            </div>
+
+            <Form onSubmit={FormHandler}>
+              <span>
+                {formMessage}
+              </span>
+              <Input
+                placeholder='Nome *'
+                value={name}
+                onChange={e => {setName(e.target.value)}}
+                required
+              />
+              <Input
+                placeholder='Evento *'
+                id="evento" 
+                list="eventos"
+                value={customerEvent}
+                onChange={e => {setCustomerEvent(e.target.value)}}
+                required
+              />
+              <datalist id="eventos">
+                <option value="Casamento" />
+                <option value="Bodas" />
+                <option value="Aniversários" />
+                <option value="Graduação" />
+                <option value="Evento Empresarial" />
+                <option value="Evento Corporativo" />
+                <option value="Outros" />
+              </datalist>
+
+              <Input
+                type='email'
+                placeholder='Endereço de email'
+                value={email}
+                onChange={e => {setEmail(e.target.value)}}
+              />
+              <Input
+                placeholder='Telefone *'
+                required
+                value={phoneNumber}
+                onChange={e => {setPhoneNumber(e.target.value)}}
+              />
+              <Button type='submit'>
+                Submeter
+              </Button>
+            </Form>
+          </FormContainer>
         </section>
       </Container>
       <Footer

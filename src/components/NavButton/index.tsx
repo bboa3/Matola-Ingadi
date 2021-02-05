@@ -1,6 +1,7 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
+import { jumper } from '../../utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color: string
@@ -8,9 +9,17 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
   url: string
   isToOutsideOfWebsite: boolean
+  useJump: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({color, backgroundColor, text, url, isToOutsideOfWebsite}) => (
+const Button: React.FC<ButtonProps> = ({
+  color, 
+  backgroundColor, 
+  text, 
+  url, 
+  isToOutsideOfWebsite,
+  useJump
+}) => (
   <Container>
     <span style={{backgroundColor}}></span>   
     {
@@ -30,7 +39,23 @@ const Button: React.FC<ButtonProps> = ({color, backgroundColor, text, url, isToO
       )
     }
     {
-      (!isToOutsideOfWebsite) && (
+
+      (!isToOutsideOfWebsite && useJump) && (
+        // use id to jump
+        <Link 
+          to=''
+          style={{
+            backgroundColor,
+            color,
+          }}
+          onClick={(_e) => {jumper(url)}}
+          type="submit"
+        >{text}</Link>
+      )
+    }
+    {
+
+      (!isToOutsideOfWebsite && !useJump) && (
         <Link 
           to={url}
           style={{
