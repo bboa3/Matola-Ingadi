@@ -1,3 +1,4 @@
 # Prisma Migrate lockfile v1
 
-20210206010731-create-tables
+20210206160423-relations
+20210206222549-event-id
