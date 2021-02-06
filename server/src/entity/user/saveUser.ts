@@ -1,6 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import validator from '../../errors/validator';
 
+import createEventCreateUser from './events/createEventCreateUser';
+import createEventUpdateUser from './events/createEventUpdateUser';
+
 export interface UserData {
   name: string,
   email: string,
@@ -12,41 +15,7 @@ export interface UserData {
 const prisma = new PrismaClient();
 
 
-const update = (id: string, data: UserData) => {
-  return prisma.users.update({
-    where: { id },
-    data: {
-      email: data.email,
-      phone_number: data.phoneNumber,
-      name: data.name,
-      user_events: {
-        create: {
-          event: data.customerEvent,
-          date: data.date
-        }
-      }
-    }
-  })
-}
-
-const create = (data: UserData) => {
-  return prisma.users.create({
-    data: {
-      email: data.email,
-      phone_number: data.phoneNumber,
-      name: data.name,
-      user_events: {
-        create: {
-          event: data.customerEvent,
-          date: data.date
-        }
-      }
-    }
-  })
-}
-
-
-const saveUser = async (data: UserData) => {
+const createEvent = async (data: UserData) => {
   await validator.user(data);
 
   const user = await prisma.users.findUnique({ where: {
@@ -54,14 +23,14 @@ const saveUser = async (data: UserData) => {
   }});
   
   if(user) {
-    const updatedUser = await update(user.id, data);
+    const updatedUser = await createEventUpdateUser(user.id, data);
     return {data: updatedUser}
   } 
 
   if(!user) {
-    const newUser = await create(data);
+    const newUser = await createEventCreateUser(data);
     return {data: newUser}
   }
 }
 
-export default saveUser;
+export default createEvent;

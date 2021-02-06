@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(express.json());
 
 app.use(cookieParser());
-app.use(routes);
+app.use('/api/v1', routes);
 
 app.use('/uploads/images', express.static(path.join(__dirname, '..', 'uploads', 'images')));
 app.use(errorHandler);

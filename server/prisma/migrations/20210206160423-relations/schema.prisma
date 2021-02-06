@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -19,7 +19,6 @@ model users {
 }
 
 model user_events {
-  id            String   @id @default(uuid())
   date_of_event String
   user          users @relation(fields: [userId], references: [id])
   userId        String
@@ -27,6 +26,7 @@ model user_events {
   eventId       String
   created_at    DateTime @default(now()) 
   updated_at    DateTime @updatedAt
+  @@id([userId, eventId])
 }
 
 model events {

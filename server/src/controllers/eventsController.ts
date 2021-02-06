@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { UserData } from '../entity/user/saveUser';
  
 import mailer from '../modules/mailer';
-import saveUser from '../entity/user/saveUser';
+import createEvent from '../entity/user/saveUser';
 
 export default {
   async create(request: Request, response: Response) {
@@ -52,7 +52,7 @@ export default {
     }
 
     if(email) {
-      await saveUser(data);
+      await createEvent(data);
     }
   }
 }
