@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-import usersController from './controllers/usersController';
+import userEmailController from './controllers/userEmailController';
+import eventsController from './controllers/eventsController';
 import photosAccessories from './controllers/photosAccessoriesController';
 import photosEvents from './controllers/photosEventsController';
 
@@ -10,8 +11,8 @@ import photosUploadConfig from './config/photos';
 const routes = Router();
 const photosUpload = multer(photosUploadConfig);
 
-routes.post('/user/login', usersController.index);
-routes.post('/user/create', usersController.create);
+routes.post('/user/email', userEmailController.create);
+routes.post('/user/event', eventsController.create);
 
 routes.get('/images/accessory', photosAccessories.index);
 routes.get('/images/accessory/:id', photosAccessories.findById);

@@ -1,16 +1,15 @@
-import { Users } from '@prisma/client';
+import { users } from '@prisma/client';
 
 export default {
-  render(user: Users) {
+  render(user: users) {
     return {
-      id: user.id,
       name: user.name,
-      phone: user.phone,
+      phone: user.phone_number,
       email: user.email,
     };
   },
 
-  renderMany(users: Users[]) {
+  renderMany(users: users[]) {
     return users.map(user => this.render(user));
   }
 }
