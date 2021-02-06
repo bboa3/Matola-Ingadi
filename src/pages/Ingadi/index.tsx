@@ -1,10 +1,15 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, memo, useState } from 'react';
 import Header from '../../components/Header';
 import Map from '../../components/Map';
 import PhotosCarousel from '../../components/PhotosCarousel';
 import History from '../../components/History';
 import images from '../../assets/images';
 import Footer from '../../components/Footer';
+import { Play as PlayButton } from '../../assets/icons';
+import Input from '../../components/Input/styles';
+import { EventScheduleResponse } from '../../components/ResponseRender/styles';
+import Button from '../../components/SubmitButton/styles';
+import NavButton from '../../components/NavButton';
 import { 
   Container,
   Video,
@@ -16,27 +21,41 @@ import {
   Form
 } from './styles';
 
-import { Play as PlayButton } from '../../assets/icons';
-import Input from '../../components/Input/styles';
-import Button from '../../components/SubmitButton/styles';
-import NavButton from '../../components/NavButton';
 import api from '../../services/api';
+import errorHandler from '../../errors/handler';
 
-const Ingadi: React.FC = () => {
+const Ingadi: React.FC = memo(() => {
   const [ name, setName ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ phoneNumber, setPhoneNumber ] = useState('');
-  const [ formMessage, setFormMessage ] = useState('');
+  const [ apiResponse, setApiResponse ] = useState('');
   const [ customerEvent, setCustomerEvent ] = useState('');
-
+  const [ date, setDate ] = useState('');
+  const [ styles, setStyles ] = useState({})
+  
   const FormHandler = (e: FormEvent) => {
     e.preventDefault();
 
-    api.post('', {
+    api.post('/user/event', {
       name,
       email,
       phoneNumber,
-      customerEvent
+      customerEvent,
+      date
+    })
+    .then(response => {
+      setName('')
+      setEmail('')
+      setPhoneNumber('')
+      setCustomerEvent('')
+      setDate('')
+      
+      setStyles({ color: 'var(--color-success)' })
+      setApiResponse(response.data.message);
+    })
+    .catch(err => {
+      setStyles({ color: 'var(--color-error)' })
+      setApiResponse(errorHandler.render(err.response.data));
     })
   }
 
@@ -116,14 +135,28 @@ const Ingadi: React.FC = () => {
             </div>
 
             <Form onSubmit={FormHandler}>
-              <span>
-                {formMessage}
-              </span>
+              <EventScheduleResponse style={styles} >
+                {apiResponse}
+              </EventScheduleResponse>
+
               <Input
                 placeholder='Nome *'
                 value={name}
                 onChange={e => {setName(e.target.value)}}
                 required
+              />
+
+              <Input
+                type='email'
+                placeholder='Endereço de email'
+                value={email}
+                onChange={e => {setEmail(e.target.value)}}
+              />
+              <Input
+                placeholder='Telefone *'
+                required
+                value={phoneNumber}
+                onChange={e => {setPhoneNumber(e.target.value)}}
               />
               <Input
                 placeholder='Evento *'
@@ -142,18 +175,12 @@ const Ingadi: React.FC = () => {
                 <option value="Evento Corporativo" />
                 <option value="Outros" />
               </datalist>
-
               <Input
-                type='email'
-                placeholder='Endereço de email'
-                value={email}
-                onChange={e => {setEmail(e.target.value)}}
-              />
-              <Input
-                placeholder='Telefone *'
+                placeholder='Data da realização do evento *'
+                type="date"
+                value={date}
+                onChange={e => {setDate(e.target.value)}}
                 required
-                value={phoneNumber}
-                onChange={e => {setPhoneNumber(e.target.value)}}
               />
               <Button type='submit'>
                 Submeter
@@ -167,6 +194,6 @@ const Ingadi: React.FC = () => {
       />
     </>
   )
-}
+})
 
 export default Ingadi;

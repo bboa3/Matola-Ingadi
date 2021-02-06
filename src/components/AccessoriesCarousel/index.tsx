@@ -13,7 +13,6 @@ interface Props {
 }
 
 const AccessoriesCarousel: React.FC<Props> = memo(({images}) => {
-
   useEffect(() => {
     new Glider(document.querySelector('.glider'), {
       slidesToShow: 1.5,

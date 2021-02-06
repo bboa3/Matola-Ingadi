@@ -27,7 +27,7 @@ const MapContent: React.FC<Props> = ({
       {title}
     </h3>
     {
-      descriptions.map(description => <p>{description}</p>)
+      descriptions.map((description, index) => <p key={index}>{description}</p>)
     }
 
     <Button 

@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { jumper } from '../../utils';
@@ -12,7 +12,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   useJump: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = memo(({
   color, 
   backgroundColor, 
   text, 
@@ -68,6 +68,6 @@ const Button: React.FC<ButtonProps> = ({
     }
     <div style={{backgroundColor}}></div>
   </Container>
-)
+))
 
 export default Button;

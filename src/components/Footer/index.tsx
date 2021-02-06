@@ -1,40 +1,36 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, memo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Main } from './styles';
 import images from '../../assets/images';
-
-import api from '../../services/api';
 import Input from '../Input/styles';
 import { PhoneIcon } from '../../assets/icons';
+import { Container, Main } from './styles';
+
+import api from '../../services/api';
+import errorHandler from '../../errors/handler';
+import { EventScheduleResponse } from '../ResponseRender/styles';
 
 interface Props {
   homePage: boolean
 }
 
-const Footer: React.FC<Props> = ({ homePage }) => {
+const Footer: React.FC<Props> = memo(({ homePage }) => {
   const [ email, setEmail ] = useState('');
-
-  const [ ApiResponse, setApiResponse ] = useState('');
-  const [ styles, setStyles ] = useState({
-    color: 'var(--color-success)'
-  })
-
-  const handlerForm = (e: FormEvent) => {
+  const [ apiResponse, setApiResponse ] = useState('');
+  const [ styles, setStyles ] = useState({})
+  
+  const FormHandler = (e: FormEvent) => {
     e.preventDefault();
 
-    api.post('/ingadi/create', {
-      email
-    })
+    api.post('/user/email', { email })
     .then(response => {
       setEmail('')
-      setApiResponse(response.data.message);
+      setStyles({ color: 'var(--color-success)' })
+      setApiResponse('Email salvo com sucesso!');
     })
     .catch(err => {
-      setStyles({
-        color: 'var(--color-error)'
-      })
-      setApiResponse(err.response.data.message);
+      setStyles({ color: 'var(--color-error)' })
+      setApiResponse(errorHandler.render(err.response.data));
     })
   }
 
@@ -50,8 +46,10 @@ const Footer: React.FC<Props> = ({ homePage }) => {
             Deixe seu email e mantenha-se em contacto
           </span>
 
-          <form onSubmit={handlerForm}>
-            <span style={styles}> {ApiResponse} </span>
+          <form onSubmit={FormHandler}>
+            <EventScheduleResponse style={styles} >
+                {apiResponse}
+              </EventScheduleResponse>
             <div>
               <Input 
                 id="footer-email-info"
@@ -102,6 +100,6 @@ const Footer: React.FC<Props> = ({ homePage }) => {
       </span>
     </Container>
   )
-}
+})
 
 export default Footer;
