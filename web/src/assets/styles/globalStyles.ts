@@ -45,6 +45,8 @@ button {
     --color-yellow: #fdb324;
     --color-yellow-dark: #b27824;
     
+    --color-error: #dc3545;
+    --color-success: #198754;
     font-size: 60%;
   }
 

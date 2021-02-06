@@ -1,9 +1,9 @@
-import { Events, Prisma } from '@prisma/client';
+import { events, Prisma } from '@prisma/client';
 
 type Photos = string[]
 
 export default {
-  render(event: Events) {
+  render(event: events) {
     const unknownPhotos = event.photos as unknown;
     const photos = unknownPhotos as Photos;
 
@@ -17,7 +17,7 @@ export default {
     };
   },
 
-  renderMany(events: Events[]) {
+  renderMany(events: events[]) {
     return events.map(event => this.render(event));
   }
 }

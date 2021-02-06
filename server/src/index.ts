@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import cors from 'cors';
 import path from 'path';
 import 'express-async-errors';
@@ -13,7 +14,9 @@ dotenvExpand(config());
 const app = express();
 
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
+
 app.use(cookieParser());
 app.use(routes);
 

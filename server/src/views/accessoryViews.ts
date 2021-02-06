@@ -1,4 +1,4 @@
-import { Accessories } from '@prisma/client';
+import { accessories } from '@prisma/client';
 
 interface Accessory {
   paths: string[]
@@ -6,7 +6,7 @@ interface Accessory {
 }
 
 export default {
-  render(accessories: Accessories) {
+  render(accessories: accessories) {
 
     const unknownPhotos = accessories.photos as unknown;
 

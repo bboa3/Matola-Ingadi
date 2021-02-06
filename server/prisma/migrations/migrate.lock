@@ -1,4 +1,3 @@
 # Prisma Migrate lockfile v1
 
-20210116130108-create-users
-20210202121514-token-version
+20210206010731-create-tables

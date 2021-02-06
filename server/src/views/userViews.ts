@@ -1,7 +1,7 @@
-import { Users } from '@prisma/client';
+import { users } from '@prisma/client';
 
 export default {
-  render(user: Users) {
+  render(user: users) {
     return {
       name: user.name,
       phone: user.phone_number,
@@ -9,7 +9,7 @@ export default {
     };
   },
 
-  renderMany(users: Users[]) {
+  renderMany(users: users[]) {
     return users.map(user => this.render(user));
   }
 }
