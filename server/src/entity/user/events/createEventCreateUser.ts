@@ -27,7 +27,7 @@ const createEventCreateUser = async (data: UserData) => {
     return newEvent
 
   } catch(error) {
-    return error
+    console.log(error);
   }
 }
 

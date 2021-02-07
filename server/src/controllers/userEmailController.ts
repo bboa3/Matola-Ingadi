@@ -15,10 +15,14 @@ export default {
 
   async create(request: Request, response: Response) {
     const { email } = request.body;
-    const res = await saveUserEmail(email);
+    const user = await saveUserEmail(email);
 
-    if(res.error)
-    return response.status(400).json(res.error)
-    response.status(200).json(res.data);
+    if(!user)
+    return response.status(400).json({error: 'Não foi possível salvar o email'})
+
+    if(user.name ===  'RegistrationError')
+    return response.status(400).json({error: 'Este email já está salvo'});
+
+    response.status(200).json(user);
   }
 }

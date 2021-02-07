@@ -39,7 +39,8 @@ model events {
 }
 
 model event_histories {
-  id          String   @id @default(uuid())
+  id          Int   @id @default(autoincrement())
+  event       events
   title       String
   description String
   photos      events_photos[]
@@ -51,7 +52,7 @@ model events_photos {
   id                  Int   @id @default(autoincrement())
   path                String
   event_histories     event_histories @relation(fields: [event_history_id], references: [id])
-  event_history_id   String
+  event_history_id    Int
 }
 
 model accessories {

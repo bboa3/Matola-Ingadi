@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import accessoryViews from '../views/accessoryViews';
+import accessoryViews from '../views/accessories';
 
 interface Accessory {
   paths: string[]
