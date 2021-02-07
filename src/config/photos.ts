@@ -7,7 +7,6 @@ export default {
     destination: path.join(__dirname, '..', '..', 'uploads', 'images'),
     filename: (request, file, cb) => {
 
-      console.log(file)
       const name = file.originalname.toLowerCase().split(' ').join('-');
       const fileName = `${Date.now()}-${name}`;
 

@@ -34,7 +34,7 @@ const createEventUpdateUser = async (id: string, data: UserData) => {
     return newEvent;
 
   } catch(error) {
-    return error
+    console.log(error);
   }
 }
 

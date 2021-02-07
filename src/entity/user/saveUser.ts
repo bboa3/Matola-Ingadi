@@ -24,12 +24,12 @@ const createEvent = async (data: UserData) => {
   
   if(user) {
     const updatedUser = await createEventUpdateUser(user.id, data);
-    return {data: updatedUser}
+    return updatedUser
   } 
 
   if(!user) {
     const newUser = await createEventCreateUser(data);
-    return {data: newUser}
+    return newUser
   }
 }
 
