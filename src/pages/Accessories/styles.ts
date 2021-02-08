@@ -16,6 +16,10 @@ export const Form = styled.form`
     line-height: 1.3;
   }
 
+  > label {
+    display: none;
+  }
+
   > button {
     float: right;
   }

@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = memo(({
         <a 
           href={url}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           style={{
             backgroundColor,
             color,
@@ -43,7 +43,7 @@ const Button: React.FC<ButtonProps> = memo(({
       (!isToOutsideOfWebsite && useJump) && (
         // use id to jump
         <Link 
-          to=''
+          to='/'
           style={{
             backgroundColor,
             color,
