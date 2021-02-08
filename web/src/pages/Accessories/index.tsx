@@ -1,27 +1,37 @@
 import React, { FormEvent, useState } from 'react';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import AccessoriesCarousel from '../../components/AccessoriesCarousel';
+
+import { EventScheduleResponse } from '../../components/ResponseRender/styles';
 import Input from '../../components/Input/styles';
 import Button from '../../components/SubmitButton/styles';
-import api from '../../services/api';
 import { Container, Form, AccessoriesContainer } from './styles';
-import AccessoriesCarousel from '../../components/AccessoriesCarousel';
+
 import images from '../../assets/images';
-import Footer from '../../components/Footer';
+
+import api from '../../services/api';
+import errorHandler from '../../errors/handler';
 
 const Accessories: React.FC = () => {
   const [ accessory, setAccessory ] = useState('');
+  const [ apiResponse, setApiResponse ] = useState('');
+  const [ styles, setStyles ] = useState({})
   
-  const handlerForm = (e: FormEvent) => {
+  const FormHandler = (e: FormEvent) => {
     e.preventDefault();
 
-    api.post('', {
-      accessory
-    })
+    api.post('/user/accessory', { accessory })
     .then(response => {
-      console.log(response);
+      setAccessory('')
+      setStyles({ color: 'var(--color-success)' })
     })
     .catch(err => {
-      console.log(err);
+      setStyles({ color: 'var(--color-error)' })
+      if(err.response)
+      return setApiResponse(errorHandler.render(err.response.data));
+
+      setApiResponse('Desculpa, o servidor não está online');
     })
   }
 
@@ -29,10 +39,15 @@ const Accessories: React.FC = () => {
     <>
       <Header />
       <Container>
-        <Form onSubmit={handlerForm}>
+        <Form onSubmit={FormHandler}>
           <legend>Vejá fotos dos nossos acessórios</legend>
+          <EventScheduleResponse style={styles} >
+            {apiResponse}
+          </EventScheduleResponse>
+          <label htmlFor="search-accessories">Ver acessórios de Matola Ingadi</label>
           <Input 
             type="text"
+            id="search-accessories"
             placeholder="Exemplo: iluminação"
             value={accessory}
             onChange={e => { setAccessory(e.target.value)}} 

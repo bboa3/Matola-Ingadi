@@ -21,7 +21,7 @@ export default {
     return response.status(400).json({error: 'Não foi possível salvar o email'})
 
     if(user.name ===  'RegistrationError')
-    return response.status(400).json({error: 'Este email já está salvo'});
+    return response.status(422).json({error: 'Email já em uso'});
 
     response.status(200).json(user);
   }

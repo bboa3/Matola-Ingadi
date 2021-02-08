@@ -33,7 +33,6 @@ const updateEventHistory = async (data: EventHistoryData) => {
     })
     return 'Event history updated successfully';
   } catch(error) {
-    console.log(error);
     return new UpdateError('Was not able to update history.');
   }
 }

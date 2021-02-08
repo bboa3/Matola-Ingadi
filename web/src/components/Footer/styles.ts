@@ -53,6 +53,10 @@ export const Main = styled.main`
         justify-content: center;
         position: relative;
 
+        > label {
+          display: none;
+        }
+        
         > input {
           max-width: 30rem;
         }

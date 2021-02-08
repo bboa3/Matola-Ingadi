@@ -1,4 +1,4 @@
-import React, { FormEvent, memo, useState } from 'react';
+import React, { memo } from 'react';
 import Header from '../../components/Header';
 import Map from '../../components/Map';
 import PhotosCarousel from '../../components/PhotosCarousel';
@@ -6,9 +6,6 @@ import History from '../../components/History';
 import images from '../../assets/images';
 import Footer from '../../components/Footer';
 import { Play as PlayButton } from '../../assets/icons';
-import Input from '../../components/Input/styles';
-import { EventScheduleResponse } from '../../components/ResponseRender/styles';
-import Button from '../../components/SubmitButton/styles';
 import NavButton from '../../components/NavButton';
 import { 
   Container,
@@ -16,49 +13,13 @@ import {
   IngadiKing,
   ButtonContainer,
   CarouselAndMapContainer,
-  Benefits,
-  FormContainer,
-  Form
+  Benefits
 } from './styles';
 
-import api from '../../services/api';
-import errorHandler from '../../errors/handler';
+import EventScheduleForm from '../../components/EventScheduleForm';
 
 const Ingadi: React.FC = memo(() => {
-  const [ name, setName ] = useState('');
-  const [ email, setEmail ] = useState('');
-  const [ phoneNumber, setPhoneNumber ] = useState('');
-  const [ apiResponse, setApiResponse ] = useState('');
-  const [ customerEvent, setCustomerEvent ] = useState('');
-  const [ date, setDate ] = useState('');
-  const [ styles, setStyles ] = useState({})
   
-  const FormHandler = (e: FormEvent) => {
-    e.preventDefault();
-
-    api.post('/user/event', {
-      name,
-      email,
-      phoneNumber,
-      customerEvent,
-      date
-    })
-    .then(response => {
-      setName('')
-      setEmail('')
-      setPhoneNumber('')
-      setCustomerEvent('')
-      setDate('')
-      
-      setStyles({ color: 'var(--color-success)' })
-      setApiResponse(response.data.message);
-    })
-    .catch(err => {
-      setStyles({ color: 'var(--color-error)' })
-      setApiResponse(errorHandler.render(err.response.data));
-    })
-  }
-
   return (
     <>
       <Header />
@@ -129,64 +90,8 @@ const Ingadi: React.FC = memo(() => {
             </p>
           </Benefits>
 
-          <FormContainer id="agendar-evento">
-            <div>
-              <h2>Agende o seu proximo evento no Matola Ingadi</h2>
-            </div>
-
-            <Form onSubmit={FormHandler}>
-              <EventScheduleResponse style={styles} >
-                {apiResponse}
-              </EventScheduleResponse>
-
-              <Input
-                placeholder='Nome *'
-                value={name}
-                onChange={e => {setName(e.target.value)}}
-                required
-              />
-
-              <Input
-                type='email'
-                placeholder='Endereço de email'
-                value={email}
-                onChange={e => {setEmail(e.target.value)}}
-              />
-              <Input
-                placeholder='Telefone *'
-                required
-                value={phoneNumber}
-                onChange={e => {setPhoneNumber(e.target.value)}}
-              />
-              <Input
-                placeholder='Evento *'
-                id="evento" 
-                list="eventos"
-                value={customerEvent}
-                onChange={e => {setCustomerEvent(e.target.value)}}
-                required
-              />
-              <datalist id="eventos">
-                <option value="Casamento" />
-                <option value="Bodas" />
-                <option value="Aniversários" />
-                <option value="Graduação" />
-                <option value="Evento Empresarial" />
-                <option value="Evento Corporativo" />
-                <option value="Outros" />
-              </datalist>
-              <Input
-                placeholder='Data da realização do evento *'
-                type="date"
-                value={date}
-                onChange={e => {setDate(e.target.value)}}
-                required
-              />
-              <Button type='submit'>
-                Submeter
-              </Button>
-            </Form>
-          </FormContainer>
+          <EventScheduleForm />
+          
         </section>
       </Container>
       <Footer

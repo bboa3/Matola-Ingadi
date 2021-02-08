@@ -15,7 +15,7 @@ const saveUserEmail = async (email: string) => {
   const user = await prisma.users.findUnique({ where: {email} })
   
   if(user)
-  return new RegistrationError("Email already exist!");
+  return new RegistrationError("Email already in use!");
   
   try {
     const emailSaved = await prisma.users.create({
