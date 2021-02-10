@@ -1,26 +1,31 @@
-import { accessories, accessories_photos } from '@prisma/client';
-import photos from '../config/photos';
+import { accessories_photos } from '@prisma/client';
+
+interface Accessories {
+  type: string
+  description: string
+  accessories_photos: accessories_photos[]
+}
 
 export default {
-  render(accessories: accessories, photos: accessories_photos[]) {
+  render(accessories: Accessories) {
     return {
-      id: accessories.id,
-      type: accessories.type,
+      accessoriesType: accessories.type,
       description: accessories.description,
-      photos: accessoriesPhotos(photos),
-      created_at: accessories.created_at,
-      updated_at: accessories.updated_at,
+      photos: accessoriesPhotos(accessories.accessories_photos)
     };
   },
 
-  // renderMany(accessories: accessories[], photos: accessories_photos[]) {
-  //   return accessories.map(accessory => this.render(accessory, photos));
-  // }
+  renderMany(accessories: Accessories[]) {
+    return accessories.map(accessories => this.render(accessories));
+  }
 }
 
 const accessoriesPhotos = (photos: accessories_photos[]) => {
   const paths =  photos.map(photo => {
-    return `${process.env.URL}/uploads/images/${photo.path}`
+    return {
+      id: photo.id,
+      path: `${process.env.URL}/uploads/images/${photo.path}`
+    }
   })
 
   return paths

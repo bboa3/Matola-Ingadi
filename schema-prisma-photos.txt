@@ -1,7 +1,0 @@
-Accessory = {
-  paths: [
-    'calfkd-003',
-    'calskfd-04u'
-  ],
-  category: 'copos'
-}

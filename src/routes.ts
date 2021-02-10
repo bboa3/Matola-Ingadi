@@ -19,9 +19,10 @@ routes.post('/event/histories', photosUpload.array('images', 10), eventsHistorie
 routes.delete('/event/histories', eventsHistories.delete);
 routes.put('/event/histories', photosUpload.array('images', 10), eventsHistories.update);
 
-routes.get('/accessory', photosAccessories.index);
-routes.put('/accessory/add/images', photosUpload.array('images', 10), photosAccessories.update);
-routes.delete('/accessory/delete/images', photosAccessories.delete);
-routes.post('/accessory/create', photosUpload.array('images', 10), photosAccessories.create);
+routes.get('/accessories/:accessoriesType', photosAccessories.index);
+routes.get('/accessories/get/all', photosAccessories.getAll);
+routes.put('/accessories', photosUpload.array('images', 10), photosAccessories.update);
+routes.delete('/accessories', photosAccessories.delete);
+routes.post('/accessories', photosUpload.array('images', 10), photosAccessories.create);
 
 export default routes;

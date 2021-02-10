@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import validator from '../../errors/validator';
+import uuidV4 from '../utils/uuid';
 
 const prisma = new PrismaClient();
 
@@ -15,18 +16,26 @@ const saveUserEmail = async (email: string) => {
   const user = await prisma.users.findUnique({ where: {email} })
   
   if(user)
-  return new RegistrationError("Email already exist!");
+  return new RegistrationError("Email already in use!");
   
+  const userId = uuidV4();
+
   try {
     const emailSaved = await prisma.users.create({
-      data: { email },
+      data: { 
+        id: userId,
+        email,
+        updated_at: new Date
+       },
       select: {
         name: true,
         email: true,
         phone_number: true,
-        events: true
+        user_events: true,
+        created_at: true
       }
     })
+
     return emailSaved;
 
   } catch(error) {
