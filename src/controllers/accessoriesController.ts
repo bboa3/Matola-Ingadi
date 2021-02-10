@@ -1,25 +1,58 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
-import accessoryViews from '../views/accessories';
+import createAccessory, { Accessory } from '../entity/Accessories/createAccessory';
+import getAccessories from '../entity/Accessories/getAccessories';
+import deleteImages from '../entity/Accessories/deleteImages';
+import updateAccessories, { AccessoriesData } from '../entity/Accessories/updateAccessories';
+import getAllAccessories from '../entity/Accessories/getAllAccessories';
 
-interface Accessory {
-  paths: string[]
-  category: string
-}
-
-const prisma = new PrismaClient();
+import accessoriesViews from '../views/accessories';
 
 export default {
   async index(request: Request, response: Response) {
-   
+    const { accessoriesType } = request.params;
+    const accessories = await getAccessories(accessoriesType);
+
+    if(!accessories)
+    return response.status(404).json({ error: `Não foi encontrado nenhum acessório do tipo ${accessoriesType}` })
+
+    response.status(200).json(accessoriesViews.render(accessories))
+  },
+
+  async getAll(request: Request, response: Response) {
+    const accessories = await getAllAccessories();
+
+    if(!accessories)
+    return response.status(404).json({ error: `Não foi encontrado nenhum acessório.` })
+
+    response.status(200).json(accessoriesViews.renderMany(accessories))
   },
 
   async update(request: Request, response: Response) {
-  
+    const { accessoriesType, description } = request.body;
+
+    const requestImages = request.files as Express.Multer.File[];
+    const accessories_photos = requestImages.map(image => {
+      return { path: image.filename }
+    })
+    
+    const data: AccessoriesData = {
+      accessoriesType,
+      description,
+      accessories_photos
+    }
+
+    const updatedAccessories = await updateAccessories(data);
+
+    if(updatedAccessories === 'AccessoriesTypeNotFound')
+    return response.status(404).json({error: `Não foram encontrado os acessórios, ${accessoriesType}.`});
+
+    response.status(200).json({error: 'Atualização feita com sucesso.'});
   },
 
   async delete(request: Request, response: Response) {
-    
+    const { ids } = request.body;
+    deleteImages(ids);
+    response.status(200).json({message: 'Dano!'});
   },
 
   async create(request: Request, response: Response) {
@@ -27,12 +60,23 @@ export default {
 
     const requestImages = request.files as Express.Multer.File[];
 
-    
-
-
-    const paths = requestImages.map(image => {
-      return { url: image.filename }
+    const photos = requestImages.map(image => {
+      return { path: image.filename }
     })
 
+    const data: Accessory = {
+      type,
+      description,
+      photos
+    }
+    
+    const newAccessory = await createAccessory(data);
+
+    if(newAccessory === "AlreadySaved")
+    return response.status(400).json({
+      error: 'O tipo de acessórios já existe. Você pode atualizar com novas fotos.'
+    });
+
+    response.status(201).json(accessoriesViews.render(newAccessory))
   }
 }

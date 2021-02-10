@@ -20,7 +20,7 @@ export default {
     const eventsHistories = await getEventsHistories(historiesToGet);
 
     if(!eventsHistories) 
-    return response.status(404).json({error: 'não foi encontrado new registo histórico'});
+    return response.status(404).json({error: 'Não foi encontrado o registo do evento.'});
 
     response.status(200).json(eventsViews.renderMany(eventsHistories));
   },
@@ -42,27 +42,24 @@ export default {
 
     const updatedEventHistory = await updateEventHistory(data);
 
-    if(typeof updatedEventHistory === 'string')
-    return response.status(200).json({message: 'Update bem sucedido!'});
+    if(updatedEventHistory === 'EventHistoryNotFound')
+    return response.status(404).json({error: 'Não foi encontrado o registo do evento'});
 
-    response.status(400).json({error: 'Não foi possível fazer o update'});
+    response.status(200).json({message: 'Atualização feita com sucesso.'});
   },
 
   async delete(request: Request, response: Response) {
     const { ids } = request.body;
-    const deletedPhotos = deleteImages(ids);
+    deleteImages(ids);
 
-    if(typeof deletedPhotos === 'string')
-    return response.status(200).json({message: 'Fotografias delegadas com sucesso!'});
-
-    response.status(400).json({error: 'Não foi possível deleitar as fotografias'});
+    response.status(200).json({message: 'Dano!'});
   },
 
   async create(request: Request, response: Response) {
     const { eventType, title, description} = request.body;
 
     const requestImages = request.files as Express.Multer.File[];
-    const photos = requestImages.map(image => {
+    const events_photos = requestImages.map(image => {
       return { path: image.filename }
     })
 
@@ -70,14 +67,14 @@ export default {
       eventType,
       title,
       description,
-      photos
+      events_photos
     }
     
     const eventHistory = await createEventHistory(data);
 
     if(!eventHistory)
-    return response.status(400).json({error: "Não foi possível registar a historia"});
+    return response.status(400).json({error: "Não foi possível registar a historia."});
 
-    response.status(200).json(eventsHistoriesViews.render(eventHistory))
+    response.status(201).json(eventsHistoriesViews.render(eventHistory))
   }
 }

@@ -12,14 +12,15 @@ const getEventsHistories = async (historiesNumberToGet: number) => {
             id: true,
             title: true,
             description: true,
-            event: true,
-            photos: true,
+            events: true,
+            events_photos: true,
             created_at: true
           },
           take: historiesNumberToGet,
         }
       }
     })
+    
     return events
 
   } catch(error) {
