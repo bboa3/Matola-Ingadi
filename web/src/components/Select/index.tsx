@@ -19,14 +19,13 @@ const Select: React.FC<SelectProps> = memo(({
 }) => (
   <Container>
     <label htmlFor={name}>{placeholder}</label>
-    <select id={name} {...rest}>
+    <select onChange={e => {setState(e.target.value)}} id={name} {...rest}>
       <option hidden value="" >{placeholder}</option>
       {
         options.map((option) => (
           <option 
             key={option}
             value={option}
-            
           >
             {option}
           </option>

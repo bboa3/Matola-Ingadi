@@ -4,8 +4,8 @@ export interface eventHistory {
   id: number,
   title: string,
   description: string,
-  event: events,
-  photos: events_photos[],
+  events: events,
+  events_photos: events_photos[],
   created_at: Date
 }
 
@@ -13,10 +13,10 @@ export default {
   render(eventHistory: eventHistory) {
     return {
       id: eventHistory.id,
-      eventType: eventHistory.event.type,
+      eventType: eventHistory.events.type,
       title: eventHistory.title,
       description: eventHistory.description,
-      photos: accessoriesPhotos(eventHistory.photos),
+      photos: accessoriesPhotos(eventHistory.events_photos),
       createdAt: eventHistory.created_at
     };
   },

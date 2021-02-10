@@ -34,7 +34,7 @@ export default {
           <br/><br/> DATA DO EVENTO: ${date}</b>
         `, 
       });
-      response.status(200).json({message: `Obrigado ${name}! Entraremos em contacto`})
+      response.status(200).json({message: `Obrigado ${name}! Entraremos em contacto.`})
     }
 
     main().catch(err => {

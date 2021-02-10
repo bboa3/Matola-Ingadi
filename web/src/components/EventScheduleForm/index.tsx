@@ -21,7 +21,6 @@ const EventScheduleForm: React.FC = memo(() => {
 
   const FormHandler = (e: FormEvent) => {
     e.preventDefault();
-     console.log(customerEvent);
     const isEmpty = () => {
       return (!customerEvent) || customerEvent === 'Selecione o evento *';
     }

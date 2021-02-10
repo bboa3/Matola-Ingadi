@@ -1,11 +1,14 @@
 import { PrismaClient } from '@prisma/client';
+import uuidV4 from '../../utils/uuid';
 import { UserData } from "../saveUser";
 
 
 const prisma = new PrismaClient();
 
-
 const createEventUpdateUser = async (id: string, data: UserData) => {
+  const userEventId = uuidV4();
+  const eventId = uuidV4();
+
   try {
     await prisma.users.update({
       where: { id },
@@ -18,14 +21,20 @@ const createEventUpdateUser = async (id: string, data: UserData) => {
 
     const newEvent = await prisma.user_events.create({
       data: {
+        id: userEventId,
         date_of_event: data.date,
-        user: {
+        updated_at: new Date,
+        users: {
           connect: { id }
         },
-        event: {
+        events: {
           connectOrCreate: {
             where: {type: data.customerEvent},
-            create: {type: data.customerEvent}
+            create: {
+              id: eventId,
+              type: data.customerEvent,
+              updated_at: new Date
+            }
           }
         }
       }

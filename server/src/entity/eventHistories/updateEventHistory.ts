@@ -8,33 +8,30 @@ export interface EventHistoryData {
   photos: Photos
 }
 
-class UpdateError extends Error {
-  constructor(message: string) {
-    super(message); 
-    this.name = "UpdateEventHistoryError";
-  }
-}
-
-
 const prisma = new PrismaClient();
 
 const updateEventHistory = async (data: EventHistoryData) => {
   const { id, title, description, photos } = data;
-  try {
-    await prisma.event_histories.update({
-      where: { id },
+
+  const eventHistory = await prisma.event_histories.findUnique({
+    where: { id }
+  })
+
+  if(!eventHistory)
+  return 'EventHistoryNotFound';
+
+  const updatedEventHistory = await prisma.event_histories.update({
+    where: { id },
       data: {
         title,
         description,
-        photos: {
+        events_photos: {
           create: photos
         }
       }
     })
-    return 'Event history updated successfully';
-  } catch(error) {
-    return new UpdateError('Was not able to update history.');
+
+    return updatedEventHistory;
   }
-}
 
 export default updateEventHistory;
