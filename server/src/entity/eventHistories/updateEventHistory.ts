@@ -18,7 +18,7 @@ const updateEventHistory = async (data: EventHistoryData) => {
   })
 
   if(!eventHistory)
-  return 'EventHistoryNotFound';
+  return 'NotFound';
 
   const updatedEventHistory = await prisma.event_histories.update({
     where: { id },

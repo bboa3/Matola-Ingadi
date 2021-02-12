@@ -1,6 +1,7 @@
 import { UserData } from '../entity/user/saveUser';
 import { parse, isDate } from "date-fns";
 import * as yup from 'yup';
+import { SuperuserData } from '../entity/Superuser/create';
 
 function parseDateString(value: string, originalValue: string) {
   const parsedDate = isDate(originalValue)
@@ -38,6 +39,29 @@ export default {
       phoneNumber: data.phoneNumber,
       event: data.customerEvent,
       date: data.date
+    }, {
+      abortEarly: false
+    })
+  },
+
+  async superuser(data: SuperuserData) {
+    const schema = yup.object().shape({
+      name: yup.string()
+        .required('Nome obrigatório')
+        .min(3, 'Nome deve ter mínimo 3 máximo 35 caracteres')
+        .max(35, 'Nome deve ter mínimo 3 máximo 35 caracteres'),
+      email: yup.string()
+        .required('Email obrigatório!')
+        .email('Email invalido, verifica o seu email e volte a tentar.'),
+      phoneNumber: yup.string()
+        .required('Contacto obrigatório')
+        .min(6, 'o seu contacto deve ter mínimo 9 máximo 13 caracteres')
+    })
+
+    await schema.validate({
+      name: data.name,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
     }, {
       abortEarly: false
     })

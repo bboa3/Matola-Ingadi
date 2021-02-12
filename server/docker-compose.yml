@@ -9,7 +9,7 @@ services:
       - db-data:/home/ingadi/db/data
     networks:
       - ingadi-network
-    container_name: "matolaIngadidb"
+    container_name: "ingadidb"
     restart: "always"
     ports:
       - "5432:5432"

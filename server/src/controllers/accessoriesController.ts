@@ -6,6 +6,8 @@ import updateAccessories, { AccessoriesData } from '../entity/Accessories/update
 import getAllAccessories from '../entity/Accessories/getAllAccessories';
 
 import accessoriesViews from '../views/accessories';
+import sendRefreshToken from '../auth/sendRefreshToken';
+import { createRefreshToken } from '../views/auth/auth';
 
 export default {
   async index(request: Request, response: Response) {
@@ -43,7 +45,7 @@ export default {
 
     const updatedAccessories = await updateAccessories(data);
 
-    if(updatedAccessories === 'AccessoriesTypeNotFound')
+    if(updatedAccessories === 'NotFound')
     return response.status(404).json({error: `Não foram encontrado os acessórios, ${accessoriesType}.`});
 
     response.status(200).json({error: 'Atualização feita com sucesso.'});

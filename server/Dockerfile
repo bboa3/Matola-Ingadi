@@ -10,5 +10,5 @@ RUN yarn
 
 COPY --chown=node:node . .
 
-EXPOSE 3001
+EXPOSE 3003
 CMD ["yarn", "prod"]
