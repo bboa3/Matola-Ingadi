@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import eventsHistoriesViews from '../views/eventsHistories';
-import createEventHistory, { EventHistory } from '../entity/eventHistories/createEventHistory';
-import getEventsHistories from '../entity/eventHistories/getEventsHistories';
-import deleteImages from '../entity/eventHistories/deleteImages';
-import updateEventHistory, { EventHistoryData } from '../entity/eventHistories/updateEventHistory';
+import createEventHistory, { EventHistory } from '../entity/EventHistories/createEventHistory';
+import getEventsHistories from '../entity/EventHistories/getEventsHistories';
+import deleteImages from '../entity/EventHistories/deleteImages';
+import updateEventHistory, { EventHistoryData } from '../entity/EventHistories/updateEventHistory';
 
 import eventsViews from '../views/events';
 
@@ -42,7 +42,7 @@ export default {
 
     const updatedEventHistory = await updateEventHistory(data);
 
-    if(updatedEventHistory === 'EventHistoryNotFound')
+    if(updatedEventHistory === 'NotFound')
     return response.status(404).json({error: 'Não foi encontrado o registo do evento'});
 
     response.status(200).json({message: 'Atualização feita com sucesso.'});

@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Photos } from "../eventHistories/createEventHistory";
+import { Photos } from "../EventHistories/createEventHistory";
 
 export interface AccessoriesData {
   accessoriesType: string
@@ -17,7 +17,7 @@ const updateAccessories = async (data: AccessoriesData) => {
   })
 
   if(!accessories)
-  return 'AccessoriesTypeNotFound'
+  return 'NotFound';
 
   const updatedAccessories = await prisma.accessories.update({
     where: { type: accessoriesType },

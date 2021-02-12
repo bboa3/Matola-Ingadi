@@ -66,8 +66,18 @@ model users {
   name          String?
   email         String        @unique
   phone_number  String?
-  token_version Int           @default(0)
   created_at    DateTime      @default(now())
   updated_at    DateTime
   user_events   user_events[]
+}
+
+model super_users {
+  id            String        @id
+  name          String
+  email         String        @unique
+  password      String
+  phone_number  String
+  token_version Int           @default(0)
+  created_at    DateTime      @default(now())
+  updated_at    DateTime
 }

@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Photos } from "../eventHistories/createEventHistory";
+import { Photos } from "../EventHistories/createEventHistory";
 import uuidV4 from "../utils/uuid";
 
 const prisma = new PrismaClient();
