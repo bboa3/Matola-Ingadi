@@ -1,30 +1,62 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useCallback, useContext, useEffect, useState } from 'react';
+import { DataContext } from '../../contexts';
+import { Accessory } from 'state-data';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import AccessoriesCarousel from '../../components/AccessoriesCarousel';
 
 import { EventScheduleResponse } from '../../components/ResponseRender/styles';
-import Input from '../../components/Input/styles';
 import Button from '../../components/SubmitButton/styles';
 import { Container, Form, AccessoriesContainer } from './styles';
 
-import images from '../../assets/images';
-
 import api from '../../services/api';
 import errorHandler from '../../errors/handler';
+import Select from '../../components/Select';
 
 const Accessories: React.FC = () => {
-  const [ accessory, setAccessory ] = useState('');
+  const { data, setData } = useContext(DataContext);
+  const { accessory, accessoriesTypes } = data;
+  const [ accessoriesToSearch, setAccessoriesToSearch ] = useState('');
   const [ apiResponse, setApiResponse ] = useState('');
-  const [ styles, setStyles ] = useState({})
-  
+  const [ styles, setStyles ] = useState({});
+  const [ photographs, setPhotographs ] = useState<string[]>();
+
+  useEffect(() => {
+    api.get('/accessories/get/all')
+    .then(response => {
+      setData({...data, accessory: response.data[0]})
+
+      storeAccessoriesTypes(response.data)
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if(accessory) {
+      const photos = accessory.photos.map(image => (
+        image.path
+      ))
+      setPhotographs(photos)
+    }
+  }, [accessory])
+
+  const storeAccessoriesTypes = useCallback((accessories: Accessory[]) => {
+    const accessoriesTypes = accessories.map(accessory => (
+      accessory.accessoriesType
+    ))
+    setData({...data, accessoriesTypes})
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const FormHandler = (e: FormEvent) => {
     e.preventDefault();
 
-    api.post('/user/accessory', { accessory })
+    api.get(`/accessories/${accessoriesToSearch}`)
     .then(response => {
-      setAccessory('')
-      setStyles({ color: 'var(--color-success)' })
+      setData({...data, accessory: response.data})
     })
     .catch(err => {
       setStyles({ color: 'var(--color-error)' })
@@ -44,33 +76,43 @@ const Accessories: React.FC = () => {
           <EventScheduleResponse style={styles} >
             {apiResponse}
           </EventScheduleResponse>
-          <label htmlFor="search-accessories">Ver acessórios de Matola Ingadi</label>
-          <Input 
-            type="text"
-            id="search-accessories"
-            placeholder="Exemplo: iluminação"
-            value={accessory}
-            onChange={e => { setAccessory(e.target.value)}} 
-            required
-          />
+          {
+            accessoriesTypes && (
+              <Select 
+                label="Ver acessórios do Matola Ingadi"
+                options={accessoriesTypes}
+                placeholder={`Exemplo: ${accessory ? accessory.accessoriesType : ''}`}
+                name="search-accessories"
+                setState={setAccessoriesToSearch}
+                state={accessoriesToSearch}
+              />
+            )
+          }
           <Button type="submit">
             Pesquisar
           </Button>
         </Form>
         <AccessoriesContainer>
-          <AccessoriesCarousel
-            images={
-              [
-                images.talheres.talheres3,
-                images.talheres.talheres4,
-                images.talheres.talheres1,
-                images.talheres.talheres2,
-                images.talheres.talheres5,
-                images.talheres.talheres6,
-                images.talheres.talheres7,
-              ]
-            }
-          />
+          {
+            photographs && (
+              <AccessoriesCarousel
+                images={photographs}
+              />
+            )
+          }
+          {
+            !photographs && (
+              <p
+                style={{
+                  marginTop: '13rem',
+                  display: "flex",
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignContent: 'center'
+                }}
+              >Carregando...</p>
+            )
+          }
         </AccessoriesContainer>
       </Container>
       <Footer

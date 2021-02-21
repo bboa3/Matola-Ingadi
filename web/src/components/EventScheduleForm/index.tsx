@@ -94,6 +94,7 @@ const EventScheduleForm: React.FC = memo(() => {
           onChange={e => {setPhoneNumber(e.target.value)}}
         /> 
         <Select
+          label="Evento"
           state={customerEvent}
           setState={setCustomerEvent}
           name="select-event"

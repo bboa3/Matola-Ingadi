@@ -5,6 +5,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   state: string
   setState: Dispatch<React.SetStateAction<string>>
   name: string
+  label: string
   placeholder: string
   options: string[]
 }
@@ -12,13 +13,14 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 const Select: React.FC<SelectProps> = memo(({
   state: string,
   setState,
+  label,
   placeholder, 
   options, 
   name, 
   ...rest
 }) => (
   <Container>
-    <label htmlFor={name}>{placeholder}</label>
+    <label htmlFor={name}>{label}</label>
     <select onChange={e => {setState(e.target.value)}} id={name} {...rest}>
       <option hidden value="" >{placeholder}</option>
       {

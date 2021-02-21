@@ -69,7 +69,7 @@ const Ingadi: React.FC = memo(() => {
             title="Celebramos O Amor Em Todas As Suas Formas e Cores"
             popUpTitle="Desde 2015"
             description="
-              Alimentamos cumplicidade, autenticidade, espontaneidade. 
+              Alimentamos cumplicidade, autenticidade, espontaneidade.
               Organizamos casamentos que surpreendem, provocam reações, surpreendem e
               perturbam.
             "
