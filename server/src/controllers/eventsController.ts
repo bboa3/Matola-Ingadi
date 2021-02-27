@@ -32,8 +32,8 @@ export default {
     })
 
     const sendEmailData = { 
-      from: '"Matola Ingadi" <aisupremo.suporte@gmail.com>', 
-      to: "aisupremo.suporte@gmail.com",
+      from: '"Matola Ingadi" <codytech.4@gmail.com>', 
+      to: "codytech.4@gmail.com",
       subject: `Novo Evento, ${customerEvent}`,
       text: `
         Agendar Evento ${customerEvent}
