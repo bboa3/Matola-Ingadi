@@ -9,6 +9,7 @@ interface Events {
 export default {
   render(event: Events) {
     return {
+      eventType: event.type,
       eventHistories: eventsHistoriesViews.renderMany(event.event_histories)
     };
   },

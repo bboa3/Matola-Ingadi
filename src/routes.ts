@@ -8,7 +8,7 @@ import accessoriesController from './controllers/accessoriesController';
 import eventsHistoriesController from './controllers/eventsHistoriesController';
 
 import refreshTokenController from './auth/refreshTokenController';
-import verifyToken from './Auth/isSuperuser';
+import verifyToken from './auth/isSuperuser';
 import photosUploadConfig from './config/photos';
 
 const routes = Router();

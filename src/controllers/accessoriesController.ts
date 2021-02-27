@@ -6,8 +6,6 @@ import updateAccessories, { AccessoriesData } from '../entity/Accessories/update
 import getAllAccessories from '../entity/Accessories/getAllAccessories';
 
 import accessoriesViews from '../views/accessories';
-import sendRefreshToken from '../auth/sendRefreshToken';
-import { createRefreshToken } from '../views/auth/auth';
 
 export default {
   async index(request: Request, response: Response) {
@@ -24,9 +22,8 @@ export default {
     const accessories = await getAllAccessories();
 
     if(!accessories)
-    return response.status(404).json({ error: `Não foi encontrado nenhum acessório.` })
-
-    response.status(200).json(accessoriesViews.renderMany(accessories))
+    return response.status(404).json({ error: `Não foi encontrado nenhum acessório.` });
+    response.status(200).json(accessoriesViews.renderMany(accessories));
   },
 
   async update(request: Request, response: Response) {
