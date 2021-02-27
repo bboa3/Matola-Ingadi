@@ -32,9 +32,12 @@ const Ingadi: React.FC = memo(() => {
         </Video>
         <section>
           <IngadiKing>
-            <h1>VocÊ é O Rei Dos Nossos Eventos</h1>
+            <h1>Você e seus convidados são as estrelas dos nossos eventos</h1>
             <p>
-              O nosso objetivo é tornar o seu evento único e autentico. Abrimos as portas da nossa casa para que venha ser rei . O momento especial também deve ser cheio de Glamour, por isso nunca poupamos esforço no nosso oficio de serventia e preparação para as suas celebrações.
+              Salão de eventos Matola Ingadi, a nossa felicidade está em garantir eventos únicos e cinco estrelas, 
+              disponibilizar uma experiência que vá de acordo com os sonhos dos nossos clientes.
+              Matola Ingadi é mais do que um salão de eventos, é um jardim onde sonhos são realizados,
+              onde o nossos clientes na companhia daqueles que mais amam realizam os seus eventos.
             </p>
 
             <ButtonContainer>

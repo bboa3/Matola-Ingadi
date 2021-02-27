@@ -1,8 +1,12 @@
 import { Request, Response } from 'express';
 import { UserData } from '../entity/user/saveUser';
  
-import mailer from '../modules/mailer';
 import createEvent from '../entity/user/saveUser';
+import sendMail from '../services/sendMail';
+import { resolve } from 'path'
+import handlebars from 'handlebars';
+import fs from 'fs';
+import ptDate from '../utils/createPtDate';
 
 export default {
   async create(request: Request, response: Response) {
@@ -14,34 +18,42 @@ export default {
       date
     } = request.body;
 
-    async function main() {
-      await mailer.sendMail({ 
-        from: '"Matola Ingadi" <codytech.4@gmail.com>', 
-        to: "codytech.4@gmail.com",
-        subject: `Novo Evento, ${customerEvent}`,
-        text: `
-          NOME: ${name} 
-          EMAIL: ${email ? email : 'Sem endereço de email'} 
-          TELEFONE: ${phoneNumber} 
-          EVENTO: ${customerEvent}
-          DATA DO EVENTO: ${date}
-        `, 
-        html: `
-          <b> NOME:   ${name} 
-          <br/><br/> EMAIL:   ${email ? email : 'Sem endereço de email'} 
-          <br/><br/> TELEFONE:   ${phoneNumber} 
-          <br/><br/> EVENTO:   ${customerEvent}</b>
-          <br/><br/> DATA DO EVENTO: ${date}</b>
-        `, 
-      });
-      response.status(200).json({message: `Obrigado ${name}! Entraremos em contacto.`})
+    const emailPath = resolve(__dirname, "..", "views", "emails", "eventScheduleMail.hbs");
+    const templateFileContent = fs.readFileSync(emailPath).toString('utf-8');
+
+    const mailTemplateParse = handlebars.compile(templateFileContent);
+    
+    const html = mailTemplateParse({
+      name,
+      email,
+      customerEvent,
+      phoneNumber,
+      date: await ptDate(date)
+    })
+
+    const sendEmailData = { 
+      from: '"Matola Ingadi" <aisupremo.suporte@gmail.com>', 
+      to: "aisupremo.suporte@gmail.com",
+      subject: `Novo Evento, ${customerEvent}`,
+      text: `
+        Agendar Evento ${customerEvent}
+        Nome do cliente: ${name} 
+        Email: ${email ? email : 'Sem endereço de email'} 
+        Telefone: ${phoneNumber} 
+        Data que pretende realizar o evento: ${date}
+      `, 
+      html: html
     }
 
-    main().catch(err => {
+    sendMail(sendEmailData)
+    .then(() => {
+      response.status(200).json({message: `Obrigado ${name}! Entraremos em contacto.`})
+    })
+    .catch(err => {
       response.status(400).json({
         error: 'Não foi possível enviar os dados. Por favor, tente novamente.'
       });
-    });
+    })
 
     const data: UserData = {
       name,

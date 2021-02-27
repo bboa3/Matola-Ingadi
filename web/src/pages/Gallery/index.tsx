@@ -9,6 +9,7 @@ import api from '../../services/api';
 import { AnEvent, EventsHistories } from 'state-data';
 import INICIAL_STATE from '../../utils/inicialState';
 import separator from '../../utils/separator';
+import images from '../../assets/images';
 
 const Photos: React.FC = () => {
   const { data, setData } = useContext(DataContext);
@@ -26,17 +27,14 @@ const Photos: React.FC = () => {
     .catch(err => {
       console.log(err);
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  console.log('Rendered');
-  console.log(eventsHistories);
-  
 
   return (
     <>
       <Header />
       <Container>
-        {
+        {/* {
           (eventsHistories.casamentos.length > 1) && (
             <PhotosCarousel
               images={eventsHistories.casamentos}
@@ -49,7 +47,7 @@ const Photos: React.FC = () => {
           (eventsHistories.bodas.length > 1) && (
             <PhotosCarousel
               images={eventsHistories.bodas}
-              animationDelay={5000}
+              animationDelay={6000}
               title={`Nossas de Bodas`}
             />
           )
@@ -58,7 +56,7 @@ const Photos: React.FC = () => {
           (eventsHistories.aniversário.length > 1) && (
             <PhotosCarousel
               images={eventsHistories.aniversário}
-              animationDelay={5000}
+              animationDelay={7000}
               title={`Nossos Aniversários`}
             />
           )
@@ -67,7 +65,7 @@ const Photos: React.FC = () => {
           (eventsHistories.eventosEmpresariais.length > 1) && (
             <PhotosCarousel
               images={eventsHistories.eventosEmpresariais}
-              animationDelay={5000}
+              animationDelay={8000}
               title={`Nossos Eventos Empresariais`}
             />
           )
@@ -85,7 +83,7 @@ const Photos: React.FC = () => {
           (eventsHistories.graduação.length > 1) && (
             <PhotosCarousel
               images={eventsHistories.graduação}
-              animationDelay={5000}
+              animationDelay={6000}
               title={`Nossas Graduações`}
             />
           )
@@ -94,7 +92,7 @@ const Photos: React.FC = () => {
           (eventsHistories.festásReligiosas.length > 1) && (
             <PhotosCarousel
               images={eventsHistories.festásReligiosas}
-              animationDelay={5000}
+              animationDelay={7000}
               title={`Nossas Festás Religiosas`}
             />
           )
@@ -107,7 +105,23 @@ const Photos: React.FC = () => {
               title={`Nossos Eventos Culturais`}
             />
           )
-        }
+        } */}
+
+        <PhotosCarousel
+          images={[images.weddingLightNight, images.weddingPiscina]}
+          animationDelay={5000}
+          title={`Nossos Casamentos`}
+        />
+        <PhotosCarousel
+          images={[images.weddingLightNight, images.weddingPiscina]}
+          animationDelay={6000}
+          title={`Nossos Aniversários`}
+        />
+        <PhotosCarousel
+          images={[images.weddingLightNight, images.weddingPiscina]}
+          animationDelay={7000}
+          title={`Nossos Eventos Empresariais`}
+        />
       </Container>
       <Footer 
         homePage={false}

@@ -7,13 +7,13 @@ import mapTablet from './map-tablet.svg';
 import weddings from './weddings.jpg';
 import AiVemONoivo from './ai-vem-o-noivo.jpg';
 import weddingPiscina from './casamento-piscina.jpg';
-import talheres1 from './amina-el-shazly-tpVDnm1uPUU-unsplash.jpg';
-import talheres2 from './cutlery-377700_1280.jpg';
-import talheres3 from './cutlery-948563_1280.jpg';
-import talheres4 from './pexels-negative-design-1447299.jpg';
-import talheres5 from './soup-spoon-554063_1920.jpg';
-import talheres6 from './table-540067_1920.jpg';
-import talheres7 from './vintage-4283036_1280.png';
+import talheres1 from './anuvith-premakumar-Iceviap0eGI-unsplash.jpg';
+import talheres2 from './brayden-gray-RuV_kJNFPiA-unsplash.jpg';
+import talheres3 from './eduardo-cano-photo-co-uz3bfBm2ScM-unsplash.jpg';
+import talheres4 from './macau-photo-agency-GCPW1-1RtGs-unsplash.jpg';
+import talheres5 from './mitchell-luo-rNjsDvYUGOw-unsplash.jpg';
+import talheres6 from './sam-moqadam-ugaOk9LkmQY-unsplash.jpg';
+import talheres7 from './silviu-beniamin-tofan-peTt3DTUhMQ-unsplash.jpg';
 
 const images = {
   logo,

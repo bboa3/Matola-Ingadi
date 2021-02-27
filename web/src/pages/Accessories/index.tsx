@@ -1,4 +1,4 @@
-import React, { FormEvent, useCallback, useContext, useEffect, useState } from 'react';
+import React, { FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import { DataContext } from '../../contexts';
 import { Accessory } from 'state-data';
 import Header from '../../components/Header';
@@ -12,6 +12,7 @@ import { Container, Form, AccessoriesContainer } from './styles';
 import api from '../../services/api';
 import errorHandler from '../../errors/handler';
 import Select from '../../components/Select';
+import images from '../../assets/images';
 
 const Accessories: React.FC = () => {
   const { data, setData } = useContext(DataContext);
@@ -24,9 +25,9 @@ const Accessories: React.FC = () => {
   useEffect(() => {
     api.get('/accessories/get/all')
     .then(response => {
+      storeAccessoriesTypes.current(response.data)
       setData({...data, accessory: response.data[0]})
-
-      storeAccessoriesTypes(response.data)
+      photographsSetter.current(accessory)
     })
     .catch(err => {
       console.log(err.response);
@@ -34,22 +35,17 @@ const Accessories: React.FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    if(accessory) {
-      const photos = accessory.photos.map(image => (
-        image.path
-      ))
-      setPhotographs(photos)
-    }
-  }, [accessory])
+  const photographsSetter = useRef((acs: Accessory) => {
+    const photos = acs.photos.map(image => image.path )
+    setPhotographs(photos)
+  })
 
-  const storeAccessoriesTypes = useCallback((accessories: Accessory[]) => {
+  const storeAccessoriesTypes = useRef((accessories: Accessory[]) => {
     const accessoriesTypes = accessories.map(accessory => (
       accessory.accessoriesType
     ))
     setData({...data, accessoriesTypes})
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  });
 
   const FormHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -57,6 +53,7 @@ const Accessories: React.FC = () => {
     api.get(`/accessories/${accessoriesToSearch}`)
     .then(response => {
       setData({...data, accessory: response.data})
+      photographsSetter.current(accessory)
     })
     .catch(err => {
       setStyles({ color: 'var(--color-error)' })
@@ -76,24 +73,32 @@ const Accessories: React.FC = () => {
           <EventScheduleResponse style={styles} >
             {apiResponse}
           </EventScheduleResponse>
-          {
-            accessoriesTypes && (
+          {/* {
+            (accessoriesTypes && accessory.accessoriesType) && (
               <Select 
                 label="Ver acessórios do Matola Ingadi"
                 options={accessoriesTypes}
-                placeholder={`Exemplo: ${accessory ? accessory.accessoriesType : ''}`}
+                placeholder={`Exemplo: ${accessory.accessoriesType}`}
                 name="search-accessories"
                 setState={setAccessoriesToSearch}
                 state={accessoriesToSearch}
               />
             )
-          }
+          } */}
+          <Select 
+            label="Ver acessórios do Matola Ingadi"
+            options={['Iluminação']}
+            placeholder={`Exemplo: Iluminação`}
+            name="search-accessories"
+            setState={setAccessoriesToSearch}
+            state={accessoriesToSearch}
+          />
           <Button type="submit">
             Pesquisar
           </Button>
         </Form>
         <AccessoriesContainer>
-          {
+          {/* {
             photographs && (
               <AccessoriesCarousel
                 images={photographs}
@@ -112,11 +117,22 @@ const Accessories: React.FC = () => {
                 }}
               >Carregando...</p>
             )
-          }
+          } */}
+          <AccessoriesCarousel
+            images={[
+              images.talheres.talheres5,
+              images.talheres.talheres3,
+              images.talheres.talheres2,
+              images.talheres.talheres4,
+              images.talheres.talheres7,
+              images.talheres.talheres1,
+              images.talheres.talheres6,
+            ]}
+          />
         </AccessoriesContainer>
       </Container>
       <Footer
-      homePage={false}
+        homePage={false}
       />
     </>
   )
