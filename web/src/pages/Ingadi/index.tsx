@@ -60,7 +60,7 @@ const Ingadi: React.FC = memo(() => {
             <Map
               title="venha viver a experiência"
               descriptions={[
-                'Estamos logo depois do Externato Cantinho do Céu e Salesianos vindo pela Shoprite da Matola'
+                'Estamos logo depois do Externato Cantinho do Céu e Condomínio Niketche vindo pela Shoprite da Matola'
               ]}
               buttonText="Visite Matola Ingadi"
               isButtonToOutsideOfWebsite={false}
@@ -72,9 +72,8 @@ const Ingadi: React.FC = memo(() => {
             title="Celebramos O Amor Em Todas As Suas Formas e Cores"
             popUpTitle="Desde 2015"
             description="
-              Alimentamos cumplicidade, autenticidade, espontaneidade.
-              Organizamos casamentos que surpreendem, provocam reações, surpreendem e
-              perturbam.
+              Alimentamos tranquilidade, autenticidade, espontaneidade.
+              Organizamos eventos que caminham de mãos dadas com o amor, felicidade, amizade, carinho e companheirismo.
             "
             image1={images.AiVemONoivo}
             image2={images.weddings}

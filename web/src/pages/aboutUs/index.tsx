@@ -23,7 +23,7 @@ const AboutUs: React.FC = () => {
 
             <p>
               <br/>
-              Matola Ingadi localiza-se na Matola, depois do Externato Cantinho do Céu e Salesianos vindo pelo lado da Shopripe para Malhapsene. Estamos cercado pelo verde do rio Matola, onde, estando no nosso salão é possível ver uma paisagem verde junto com o cair do sol.
+              Matola Ingadi localiza-se na Matola, depois do Externato Cantinho do Céu e Condomínio Niketche vindo pelo lado da Shopripe para Malhapsene. Estamos cercado pelo verde do rio Matola, onde, estando no nosso salão é possível ver uma paisagem verde junto com o cair do sol.
               <br/><br/>
               Todo o nosso esforço é para garantir que o cliente saia feliz do nosso estabelecimento e que venha mais vezes.
             </p>

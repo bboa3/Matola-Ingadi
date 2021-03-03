@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './logo-1.png';
 import ingadiWedding from './casamento-ingadi.jpg';
 import weddingLightNight from './casamento-luz-da-noite.jpg';
 import map from './map.svg';
