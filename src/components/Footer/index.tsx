@@ -83,7 +83,7 @@ const Footer: React.FC<Props> = memo(({ homePage }) => {
           <div>
             <a>Termos e privacidade</a>
             <Link to="/visitar-matola-ingadi">Visite-nos</Link>
-            <Link to="/">sobre nós</Link>
+            <Link to="/sobre-nos">sobre nós</Link>
           </div>
           <div>
             <a rel="noopener noreferrer" target="_blank" href="https://web.facebook.com/matola.ingadi.1">

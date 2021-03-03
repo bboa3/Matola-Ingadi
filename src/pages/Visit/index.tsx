@@ -22,7 +22,7 @@ const Visit: React.FC = () => {
     <Container>
       <MinHeader>
         <h1>
-          Estamos abertos para visitas de segunda à sexta das 08:00h até 16:30h. 
+          Estamos abertos para visitas de segunda à sexta, das 08:00h até 16:30h. 
         </h1>
       </MinHeader>
 

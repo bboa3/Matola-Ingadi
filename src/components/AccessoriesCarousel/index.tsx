@@ -58,7 +58,7 @@ const AccessoriesCarousel: React.FC<Props> = memo(({images}) => {
             <img 
               key={index} 
               src={image} 
-              alt="Acessórios de eventos matola ingadi"
+              alt="Acessórios dos eventos"
             />
           ))
         }

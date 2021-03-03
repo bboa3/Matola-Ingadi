@@ -43,8 +43,13 @@ export const Container = styled.header`
 `;
 
 export const Logo = styled.div`
+  > a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+  }
   > a img {
-    width: 10rem;
+    width: 9rem;
   }
 `;
 

@@ -24,13 +24,13 @@ body {
 
 body p {
   line-height: 1.5;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Crimson Bold', Gentium Plus, sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.3rem;
   line-height: 1.3;
 }
 

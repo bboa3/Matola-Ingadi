@@ -57,9 +57,9 @@ const Header: React.FC = () => {
           variants={smallScreenVariants}
         >
           <Options>
-            <Option><Link to="/nossas-lembranças/images">Eventos</Link></Option>
+            <Option><Link to="/nossas-lembranças/images">Galéria</Link></Option>
             <Option><Link to="/acessórios-de-eventos">Acessórios</Link></Option>
-            <Option><Link to="">Sobre nós</Link></Option>
+            <Option><Link to="/sobre-nos">Sobre nós</Link></Option>
             <ContainerKing>
               <KingIcon /> 
             </ContainerKing>
