@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9e71d7a4-fcc1-4e7b-b782-61c31e37ba5d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.expo/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/settings.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1oo1nLoXUxkqBhmF7REF1PmH3Ep" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9e71d7a4-fcc1-4e7b-b782-61c31e37ba5d" name="Default Changelist" comment="" />
+      <created>1613938297307</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613938297307</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="325" y="93" key="FileChooserDialogImpl" timestamp="1613938626509">
+      <screen x="0" y="0" width="1301" height="768" />
+    </state>
+    <state x="325" y="93" key="FileChooserDialogImpl/0.0.1301.768@0.0.1301.768" timestamp="1613938626509" />
+    <state x="130" y="0" key="SettingsEditor" timestamp="1613938628872">
+      <screen x="0" y="0" width="1301" height="768" />
+    </state>
+    <state x="130" y="0" key="SettingsEditor/0.0.1301.768@0.0.1301.768" timestamp="1613938628872" />
+    <state x="306" y="174" key="run.anything.popup" timestamp="1613938542564">
+      <screen x="0" y="0" width="1301" height="768" />
+    </state>
+    <state x="306" y="174" key="run.anything.popup/0.0.1301.768@0.0.1301.768" timestamp="1613938542564" />
+  </component>
+</project>
