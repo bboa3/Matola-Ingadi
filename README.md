@@ -1,5 +1,5 @@
 
- [Matola Ingadi](https://www.aisupreme.ga/)
+ [Matola Ingadi](https://matolaingadi.website/)
 
 Matola Ingadi is an event hall, so i created a website where they can save events stories, receive an email when a user plans an event in the Lounge, save the user's planned and realized events.
  
