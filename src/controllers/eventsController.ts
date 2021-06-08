@@ -6,7 +6,8 @@ import sendMail from '../services/sendMail';
 import { resolve } from 'path'
 import handlebars from 'handlebars';
 import fs from 'fs';
-import ptDate from '../utils/createPtDate';
+import dateFormatar from '../utils/dateFormatar';
+import validator from '../errors/validator';
 
 export default {
   async create(request: Request, response: Response) {
@@ -22,25 +23,27 @@ export default {
     const templateFileContent = fs.readFileSync(emailPath).toString('utf-8');
 
     const mailTemplateParse = handlebars.compile(templateFileContent);
+
+    const formattedDate = dateFormatar(new Date(date));
     
     const html = mailTemplateParse({
       name,
       email,
       customerEvent,
       phoneNumber,
-      date: await ptDate(date)
+      date: formattedDate
     })
 
     const sendEmailData = { 
-      from: '"Matola Ingadi" <codytech.4@gmail.com>', 
-      to: "codytech.4@gmail.com",
-      subject: `Novo Evento, ${customerEvent}`,
+      from: '"Matola Ingadi" <sales.ogolfim@gmail.com>', 
+      to: "hello.ogolfim@gmail.com",
+      subject: `Novo Evento, Matola Ingadi ${customerEvent}`,
       text: `
         Agendar Evento ${customerEvent}
         Nome do cliente: ${name} 
         Email: ${email ? email : 'Sem endereço de email'} 
         Telefone: ${phoneNumber} 
-        Data que pretende realizar o evento: ${date}
+        Data que pretende realizar o evento: ${formattedDate}
       `, 
       html: html
     }
@@ -55,15 +58,17 @@ export default {
       });
     })
 
-    const data: UserData = {
-      name,
-      email,
-      phoneNumber,
-      customerEvent,
-      date
-    }
-
     if(email) {
+      const data: UserData = {
+        name,
+        email,
+        phoneNumber,
+        customerEvent,
+        date: new Date(date)
+      }
+
+      await validator.user(data);
+
       await createEvent(data);
     }
   }

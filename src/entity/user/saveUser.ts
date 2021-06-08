@@ -9,7 +9,7 @@ export interface UserData {
   email: string,
   phoneNumber: string,
   customerEvent: string,
-  date: string
+  date: Date
 }
 
 const prisma = new PrismaClient();

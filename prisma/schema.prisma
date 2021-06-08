@@ -52,7 +52,7 @@ model events_photos {
 
 model user_events {
   id            String   @id
-  date_of_event String
+  date_of_event DateTime
   userId        String
   eventId       String
   created_at    DateTime @default(now())
