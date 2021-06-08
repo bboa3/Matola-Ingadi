@@ -7,7 +7,6 @@ import sendRefreshToken from './sendRefreshToken';
 const prisma = new PrismaClient();
 
 export default {
-
   async refresh(request: Request, response: Response) {
     const accessToken = request.cookies.grid;
 

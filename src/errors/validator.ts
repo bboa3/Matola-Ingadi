@@ -1,15 +1,6 @@
 import { UserData } from '../entity/user/saveUser';
-import { parse, isDate } from "date-fns";
 import * as yup from 'yup';
 import { SuperuserData } from '../entity/Superuser/create';
-
-function parseDateString(value: string, originalValue: string) {
-  const parsedDate = isDate(originalValue)
-    ? originalValue
-    : parse(originalValue, 'yyyy-MM-dd', new Date());
-
-  return parsedDate;
-}
 
 export default {
   async user(data: UserData) {
@@ -28,7 +19,7 @@ export default {
       .required('Evento é obrigatório')
       .min(3, 'Nome deve ter mínimo 3 máximo 46 caracteres')
       .max(46, 'Nome deve ter mínimo 3 máximo 46 caracteres'),
-      date: yup.date().transform(parseDateString)
+      date: yup.date()
       .required('A data do evento está em falta')
       .min(new Date, 'Data invalida')
     })
