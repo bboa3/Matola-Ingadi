@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  ingadi-web:
+    build: .
+    env_file:
+      - ./.env
+    volumes:
+      - web-data:/home/ingadi/web
+      - node_modules:/home/ingadi/web/node_modules
+    networks:
+      - ingadi-network
+    container_name: "ingadi-web"
+    command: npm run start
+    ports:
+      - 3001:3000
+ 
+networks:
+    ingadi-network:
+volumes:
+    web-data:
+    node_modules:
