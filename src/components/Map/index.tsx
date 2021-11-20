@@ -1,9 +1,7 @@
-import React, { Fragment } from 'react';
-import Media from 'react-media';
-import { MapContainer} from './styles';
+import React from 'react';
+import { Container, MapContainer} from './styles';
 
 import Button from '../NavButton';
-
 
 interface Props {
   title: string
@@ -47,61 +45,52 @@ const Map: React.FC<Props> = ({
   isButtonToOutsideOfWebsite,
   buttonUrl
 }) => (
-  <Media queries={{
-    small: "(max-width: 738px)",
-    medium: "(min-width: 738px) and (max-width: 992px)",
-    large: "(min-width: 993px)"
-  }}>
-    {matches => (
-    <Fragment>
-      {matches.small && (
-        <MapContainer
-            style={{
-              backgroundImage: `url(./images/map-mobile.svg)`
-            }}
-          >
-          <MapContent
-            title={title}
-            descriptions={descriptions}
-            buttonText={buttonText}
-            isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
-            buttonUrl={buttonUrl}
-          />
-        </MapContainer>
-      )}
-      {matches.medium && (
-        <MapContainer
-          style={{
-            backgroundImage: `url(./images/map-tablet.svg)`
-          }}
-        >
-         <MapContent
-            title={title}
-            descriptions={descriptions}
-            buttonText={buttonText}
-            isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
-            buttonUrl={buttonUrl}
-         />
-        </MapContainer>
-      )}
-      {matches.large && (
-        <MapContainer
-          style={{
-            backgroundImage: `url(./images/map.svg)`
-          }}
-        >
-          <MapContent
-            title={title}
-            descriptions={descriptions}
-            buttonText={buttonText}
-            isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
-            buttonUrl={buttonUrl}
-          />
-        </MapContainer>
-      )}
-    </Fragment>
-  )}
-  </Media>
+  <Container>
+    <MapContainer
+      className="small"
+      style={{
+        backgroundImage: `url(./images/map-mobile.svg)`
+      }}
+    >
+      <MapContent
+        title={title}
+        descriptions={descriptions}
+        buttonText={buttonText}
+        isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
+        buttonUrl={buttonUrl}
+        />
+    </MapContainer>
+    
+    <MapContainer
+      className="medium"
+      style={{
+        backgroundImage: `url(./images/map-tablet.svg)`
+      }}
+    >
+      <MapContent
+        title={title}
+        descriptions={descriptions}
+        buttonText={buttonText}
+        isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
+        buttonUrl={buttonUrl}
+      />
+    </MapContainer>
+    
+    <MapContainer
+      className="large"
+      style={{
+        backgroundImage: `url(./images/map.svg)`
+      }}
+    >
+      <MapContent
+        title={title}
+        descriptions={descriptions}
+        buttonText={buttonText}
+        isButtonToOutsideOfWebsite={isButtonToOutsideOfWebsite}
+        buttonUrl={buttonUrl}
+      />
+    </MapContainer>
+  </Container>
 )
 
 export default Map;

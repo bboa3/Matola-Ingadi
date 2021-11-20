@@ -6,7 +6,7 @@ CREATE TABLE "accessories" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "accessories_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -15,7 +15,7 @@ CREATE TABLE "accessories_photos" (
     "path" TEXT NOT NULL,
     "accessory_id" TEXT NOT NULL,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "accessories_photos_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -27,7 +27,7 @@ CREATE TABLE "event_histories" (
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "eventsId" TEXT NOT NULL,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "event_histories_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -37,7 +37,7 @@ CREATE TABLE "events" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "events_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -46,7 +46,7 @@ CREATE TABLE "events_photos" (
     "path" TEXT NOT NULL,
     "event_history_id" INTEGER NOT NULL,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "events_photos_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -58,7 +58,7 @@ CREATE TABLE "user_events" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "user_events_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -70,7 +70,7 @@ CREATE TABLE "users" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -84,32 +84,32 @@ CREATE TABLE "super_users" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    PRIMARY KEY ("id")
+    CONSTRAINT "super_users_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "accessories.type_unique" ON "accessories"("type");
+CREATE UNIQUE INDEX "accessories_type_key" ON "accessories"("type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "events.type_unique" ON "events"("type");
+CREATE UNIQUE INDEX "events_type_key" ON "events"("type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users.email_unique" ON "users"("email");
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "super_users.email_unique" ON "super_users"("email");
+CREATE UNIQUE INDEX "super_users_email_key" ON "super_users"("email");
 
 -- AddForeignKey
-ALTER TABLE "accessories_photos" ADD FOREIGN KEY ("accessory_id") REFERENCES "accessories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "accessories_photos" ADD CONSTRAINT "accessories_photos_accessory_id_fkey" FOREIGN KEY ("accessory_id") REFERENCES "accessories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "event_histories" ADD FOREIGN KEY ("eventsId") REFERENCES "events"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "event_histories" ADD CONSTRAINT "event_histories_eventsId_fkey" FOREIGN KEY ("eventsId") REFERENCES "events"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "events_photos" ADD FOREIGN KEY ("event_history_id") REFERENCES "event_histories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "events_photos" ADD CONSTRAINT "events_photos_event_history_id_fkey" FOREIGN KEY ("event_history_id") REFERENCES "event_histories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "user_events" ADD FOREIGN KEY ("eventId") REFERENCES "events"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "user_events" ADD CONSTRAINT "user_events_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "events"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "user_events" ADD FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "user_events" ADD CONSTRAINT "user_events_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

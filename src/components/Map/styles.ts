@@ -1,8 +1,55 @@
 import styled from 'styled-components';
 
-export const MapContainer = styled.div`
+export const Container = styled.div`
   width: 90%;
   height: 48rem;
+
+  position: absolute;
+  top: 43vw;
+
+  > .small {
+    display: block;
+  }
+
+  > .medium {
+    display: none;
+  }
+
+  > .large {
+    display: none;
+  }
+
+  @media (min-width: 738px) {
+    width: 86%;
+    height: 70rem;
+    top: 46vw;
+
+    > .small {
+      display: none;
+    } 
+
+    > .medium {
+      display: block;
+    }
+  }
+
+  @media (min-width: 992px) {
+    height: 56rem;
+    top: 52vw;
+    
+    > .medium {
+      display: none;
+    }
+
+    > .large {
+      display: block;
+    }
+  }
+`;
+
+export const MapContainer = styled.div`
+  width: 100%;
+  height: 100%;
 
   background-size: cover;
   background-repeat: no-repeat;
@@ -11,9 +58,6 @@ export const MapContainer = styled.div`
   padding: 4rem 3rem;
   color: var(--color-white);
   
-  position: absolute;
-  top: 43vw;
-
   > div {
     margin-top: 2rem;
   }
@@ -26,9 +70,6 @@ export const MapContainer = styled.div`
   }
 
   @media (min-width: 738px) {
-    width: 86%;
-    height: 70rem;
-    top: 46vw;
     padding: 8rem 6rem;
 
     > h3 {
@@ -41,8 +82,6 @@ export const MapContainer = styled.div`
   }
 
   @media (min-width: 992px) {
-    height: 56rem;
-    top: 52vw;
 
     > h3 {
       width: 40rem;

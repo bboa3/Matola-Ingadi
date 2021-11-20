@@ -22,6 +22,10 @@ import {
 
 import EventScheduleForm from '../components/EventScheduleForm';
 
+import WeddingImg from '../assets/images/casamento-ingadi.jpg'
+import WeddingPoolImg from '../assets/images/casamento-piscina.jpg'
+import WeddingNightImg from '../assets/images/casamento-luz-da-noite.jpg'
+
 const  Home: React.FC = () => {
   return (
     <div>
@@ -46,8 +50,7 @@ const  Home: React.FC = () => {
         <Video>
           <ImageContainer>
             <Image
-              layout="fill"
-              src={'/images/casamento-ingadi.jpg'}
+              src={WeddingImg}
               alt="Casamento Ingadi"
               priority
             />
@@ -83,8 +86,8 @@ const  Home: React.FC = () => {
           <CarouselAndMapContainer>
             <PhotosCarousel 
               images={[
-                '/images/casamento-piscina.jpg',
-                '/images/casamento-luz-da-noite.jpg'
+                WeddingPoolImg,
+                WeddingNightImg
               ]}
               animationDelay={5000}
             />

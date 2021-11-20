@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import Image from 'next/image';
 import Media from 'react-media';
 
 import {
@@ -10,7 +11,7 @@ import { Container, SlideButtons } from './styles';
 
 interface Props {
   title?: string
-  images: string[]
+  images: StaticImageData[]
   animationDelay: number
 }
 
@@ -42,6 +43,8 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
   }
 
   useEffect(() => {
+    document.getElementById('slide').style.cssText = null;
+
     const timer = setTimeout(nextSlide, animationDelay);
     return () => clearTimeout(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,23 +73,24 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
           images.map((image, index) => {
             if(index === activeSlide) {
               return (
-                <div
+                <Image
+                  layout="fill"
+                  alt="Matola Ingadi"
                   key={index}
-                  className='slide active'
-                  style={{
-                    backgroundImage: `url(${image})`
-                  }}
-                ></div>
+                  id="slide active"
+                  src={image}
+                />
               )
             } else {
               return (
-                <div
+                <Image
+                  layout="fill"
+                  alt="Matola Ingadi"
                   key={index}
-                  className='slide'
-                  style={{
-                    backgroundImage: `url(${image})`
-                  }}
-                ></div>
+                  id='slide'
+                  src={image}
+                  hidden
+                />
               )
             }
           })

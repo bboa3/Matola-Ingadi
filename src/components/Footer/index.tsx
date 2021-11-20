@@ -32,13 +32,24 @@ const Footer: React.FC<Props> = memo(({ homePage }) => {
         body: JSON.stringify({ email })
       }
     )
-    .then(response => {
+    .then((response) => {
 
-      setStyles({ color: 'var(--color-success)' })
-      setApiResponse('Email salvo com sucesso!');
+      if(response.ok) {
+        setStyles({ color: 'var(--color-success)' })
+        setApiResponse('Email salvo com sucesso!');
+
+      } else {
+        response.json().then(res => {
+          setStyles({ color: 'var(--color-error)' })
+          setApiResponse(res.error);
+        })
+      }
     })
-    .catch(err => console.log(err)
-    )
+    .catch(err => {
+      
+      setStyles({ color: 'var(--color-error)' })
+      setApiResponse('Não foi possível salvar E-mai.');
+    })
   }
 
   return (

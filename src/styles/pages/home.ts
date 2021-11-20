@@ -48,7 +48,13 @@ export const Video = styled.div`
     }
   }
 
+  @media (min-width: 576px) {
+    height: 50vh;
+  }
+
   @media (min-width: 738px) {
+    height: 60vh;
+
     &, span {
       height: 40vh;
     }
@@ -144,5 +150,6 @@ export const Benefits = styled.div`
 
 export const ImageContainer = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 100%;
+  overflow: hidden;
 `; 

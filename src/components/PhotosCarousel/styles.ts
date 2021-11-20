@@ -16,20 +16,15 @@ export const Container = styled.div`
     height: 69vw;
     position: relative;
 
-    > .slide {
-      width: 100%;
-      height: 100%;
-
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-
+    > #slide {
+      display: initial;
       display: none;
       animation: slide 2s ease;
     }
 
-    > .slide.active {
-      display: flex;
+    > #slide#active {
+      display: initial;
+      display: block;
     }
 
     @media (min-width: 738px) {

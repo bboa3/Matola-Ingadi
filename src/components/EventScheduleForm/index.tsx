@@ -28,6 +28,7 @@ const EventScheduleForm: React.FC = memo(() => {
   const [ day, setDay ] = useState(1);
   const [ weekDay, setWeekDay ] = useState('');
   const [ year, setYear ] = useState(2021);
+  
 
   useEffect(() => {
     setMonth(months[date.getMonth()])
@@ -65,13 +66,18 @@ const EventScheduleForm: React.FC = memo(() => {
 
       const res = await response.json()
 
-      setStyles({ color: 'var(--color-success)' })
-      setApiResponse(res.message);
+      if(response.ok) {
+        setStyles({ color: 'var(--color-success)' })
+        setApiResponse(res.message);
+
+      } else {
+        setStyles({ color: 'var(--color-error)' })
+        setApiResponse(res.error);
+      }
     })
     .catch(err => {
       setStyles({ color: 'var(--color-error)' })
-
-      setApiResponse('Desculpa, o servidor não respondeu');
+      setApiResponse('Não foi possível mandar os dados.');
     })
   }
 
