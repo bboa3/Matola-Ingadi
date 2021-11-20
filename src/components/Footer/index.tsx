@@ -9,6 +9,8 @@ import { Container, Main, ImageContainer} from './styles';
 import validator from '../../formValidators/footer';
 import { EventScheduleResponse } from '../ResponseRender/styles';
 
+import logoImg from '../../assets/images/logo-1.png';
+
 interface FormData {
   email: string
 }
@@ -88,9 +90,7 @@ const Footer: React.FC<Props> = memo(({ homePage }) => {
 
           <ImageContainer>
             <Image 
-              width={1438}
-              height={792}
-              src={'/images/logo-1.png'} 
+              src={logoImg} 
               alt="logo"
             />
           </ImageContainer>

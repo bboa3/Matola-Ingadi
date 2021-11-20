@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
-import Media from 'react-media';
 import Button from '../NavButton';
 import { 
   Container,
@@ -10,9 +9,9 @@ import {
 } from './styles';
 
 interface Props {
-  image1: string
+  image1: StaticImageData
   image1Alt: string
-  image2: string
+  image2: StaticImageData
   image2Alt: string
   title: string
   description: string
@@ -56,18 +55,10 @@ const History: React.FC<Props> = ({
           useJump={false}
         />
       </div>
-      <Media queries={{
-        small: "(max-width: 738px)"
-      }}>
-        {matches => (
-          <Fragment>
-            {matches.small && (
-              <p>{description}</p>
-            )}
-          </Fragment>
-        )}
-      </Media>
+
+      <p className="small">{description}</p>
     </Place>
+
     <ImageContainer>
       <Image 
         width={6016}
@@ -77,17 +68,8 @@ const History: React.FC<Props> = ({
         alt={image2Alt}
       />
     </ImageContainer>
-    <Media queries={{
-        large: "(min-width: 738px)"
-      }}>
-        {matches => (
-        <Fragment>
-          {matches.large && (
-            <p>{description}</p>
-          )}
-        </Fragment>
-      )}
-    </Media>
+    
+    <p className="large">{description}</p>
   </Container>
 )
 

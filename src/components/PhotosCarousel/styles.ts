@@ -5,10 +5,18 @@ export const Container = styled.div`
   overflow: hidden;
   text-align: center;
 
-  > h2 {
+  > p {
     margin-top: 3rem;
     margin-bottom: 1rem;
     font-size: 2rem;
+  }
+
+  > .small {
+    display: block;
+  }
+
+  > .large {
+    display: none;
   }
 
   > .slider {
@@ -46,8 +54,13 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
 
-    > h2 {
+    > .small {
+      display: none;
+    }
+
+    > .large {
       padding: 0 5vw;
+      display: block;
     }
 
     > .slider {

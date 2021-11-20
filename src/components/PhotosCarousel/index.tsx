@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Media from 'react-media';
 
 import {
   Back as BackButton, 
@@ -54,17 +53,7 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
     <Container>
       {
         title && (
-          <Media queries={{
-            small: "(max-width: 992px)"
-          }}>
-            {matches => (
-            <Fragment>
-              {matches.small && (
-                <h2>{title}</h2>
-              )}
-            </Fragment>
-          )}
-          </Media>
+          <h2 className="small">{title}</h2>
         )
       }
 
@@ -109,17 +98,7 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
 
       {
         title && (
-          <Media queries={{
-            large: "(min-width: 993px)"
-          }}>
-            {matches => (
-            <Fragment>
-              {matches.large && (
-                <h2>{title}</h2>
-              )}
-            </Fragment>
-          )}
-          </Media>
+          <h2 className="large">{title}</h2>
         )
       }
     </Container>

@@ -4,6 +4,8 @@ import { motion, useCycle } from 'framer-motion';
 import Link from 'next/link';
 import { KingIcon } from '../../assets/icons';
 
+import logoImg from '../../assets/images/logo-1.png';
+
 import { 
   Container, 
   MenuToggleBar,
@@ -43,9 +45,7 @@ const Header: React.FC = () => {
           <Link href="/">
             <a>
               <Image 
-                width={1438}
-                height={792}
-                src={'/images/logo-1.png'} 
+                src={logoImg} 
                 alt="logo"
               />
             </a>

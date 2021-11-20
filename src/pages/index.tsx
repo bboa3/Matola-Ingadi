@@ -26,6 +26,9 @@ import WeddingImg from '../assets/images/casamento-ingadi.jpg'
 import WeddingPoolImg from '../assets/images/casamento-piscina.jpg'
 import WeddingNightImg from '../assets/images/casamento-luz-da-noite.jpg'
 
+import image1Img from '../assets/images/ai-vem-o-noivo.png'
+import image2Img from '../assets/images/weddings.jpg'
+
 const  Home: React.FC = () => {
   return (
     <div>
@@ -109,8 +112,8 @@ const  Home: React.FC = () => {
               Alimentamos tranquilidade, autenticidade, espontaneidade.
               Organizamos eventos que caminham de mãos dadas com o amor, felicidade, amizade, carinho e companheirismo.
             "
-            image1={'/images/ai-vem-o-noivo.png'}
-            image2={'/images/weddings.jpg'}
+            image1={image1Img}
+            image2={image2Img}
             image1Alt='Salão de casamentos'
             image2Alt="Ai vem o noivo"
           />

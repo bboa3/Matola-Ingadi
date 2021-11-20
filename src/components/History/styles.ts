@@ -3,17 +3,22 @@ import styled from 'styled-components';
 export const Container = styled.div`
   margin-top: 3rem;
 
+  > .large {
+    display: none;
+  }
+
   @media (min-width: 738px) {
     margin-top: 13rem;
 
-    > p {
+    > .large {
+      display: block;
       max-width: 40rem;
       margin-top: 10vh;
       float: right;
     }
   }
   @media (min-width: 1030px) {
-    > p {
+    > .large {
       margin-right: 10vw;
     }
   }
@@ -70,6 +75,7 @@ export const Wedding = styled.div`
 `;
 
 export const Place = styled.div`
+
   > div {
     display: flex; 
     flex-direction: column;
@@ -91,12 +97,14 @@ export const Place = styled.div`
     }
   }
 
-  > p {
+  > .small {
     max-width: 40rem;
     margin-left: 2rem;
+  }
 
-    @media (min-width: 738px) {
-      margin-left: 10vw;
+  @media (min-width: 738px) {
+    > .small {
+      display: none;
     }
   }
 `;
