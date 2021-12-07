@@ -6,7 +6,11 @@ import Footer from '../components/Footer';
 import PhotosCarousel from '../components/PhotosCarousel';
 import { Main } from '../styles/pages/gallery';
 
+import WeddingPoolImg from '../assets/images/casamento-piscina.jpg';
+import WeddingNightImg from '../assets/images/casamento-luz-da-noite.jpg';
+
 const  Gallery: React.FC = () => {
+
   return (
     <div>
       <Head>
@@ -102,24 +106,24 @@ const  Gallery: React.FC = () => {
 
         <PhotosCarousel
           images={[
-            '/images/casamento-luz-da-noite.jpg', 
-            '/images/casamento-piscina.jpg'
+            WeddingNightImg, 
+            WeddingPoolImg
           ]}
           animationDelay={5000}
           title={`Nossos Casamentos`}
         />
         <PhotosCarousel
           images={[
-            '/images/casamento-luz-da-noite.jpg', 
-            '/images/casamento-piscina.jpg'
+            WeddingNightImg, 
+            WeddingPoolImg
           ]}
           animationDelay={6000}
           title={`Nossos Aniversários`}
         />
         <PhotosCarousel
           images={[
-            '/images/casamento-luz-da-noite.jpg', 
-            '/images/casamento-piscina.jpg'
+            WeddingNightImg, 
+            WeddingPoolImg
           ]}
           animationDelay={7000}
           title={`Nossos Eventos Empresariais`}

@@ -11,6 +11,14 @@ import Button from '../components/SubmitButton/styles';
 
 import validator from '../formValidators/accessoriesForm';
 
+import image1 from '../assets/images/mitchell-luo-rNjsDvYUGOw-unsplash.jpg';
+import image2 from '../assets/images/eduardo-cano-photo-co-uz3bfBm2ScM-unsplash.jpg';
+import image3 from '../assets/images/brayden-gray-RuV_kJNFPiA-unsplash.jpg';
+import image4 from '../assets/images/macau-photo-agency-GCPW1-1RtGs-unsplash.jpg';
+import image5 from '../assets/images/silviu-beniamin-tofan-peTt3DTUhMQ-unsplash.jpg';
+import image6 from '../assets/images/anuvith-premakumar-Iceviap0eGI-unsplash.jpg';
+import image7 from '../assets/images/sam-moqadam-ugaOk9LkmQY-unsplash.jpg';
+
 import { 
   Main,
   AccessoriesContainer
@@ -106,7 +114,7 @@ const  Accessories: React.FC = () => {
           }}
         >
           <Form className="form">
-            <legend>Vejá fotos dos nossos acessórios</legend>
+            <legend>Veja fotos dos nossos acessórios</legend>
             <EventScheduleResponse style={styles}>
               {apiResponse}
             </EventScheduleResponse>
@@ -157,13 +165,13 @@ const  Accessories: React.FC = () => {
           } */}
           <AccessoriesCarousel
             images={[
-              '/images/mitchell-luo-rNjsDvYUGOw-unsplash.jpg',
-              '/images/eduardo-cano-photo-co-uz3bfBm2ScM-unsplash.jpg',
-              '/images/brayden-gray-RuV_kJNFPiA-unsplash.jpg',
-              '/images/macau-photo-agency-GCPW1-1RtGs-unsplash.jpg',
-              '/images/silviu-beniamin-tofan-peTt3DTUhMQ-unsplash.jpg',
-              '/images/anuvith-premakumar-Iceviap0eGI-unsplash.jpg',
-              '/images/sam-moqadam-ugaOk9LkmQY-unsplash.jpg',
+              image1,
+              image2,
+              image3,
+              image4,
+              image5,
+              image6,
+              image7,
             ]}
           />
         </AccessoriesContainer>

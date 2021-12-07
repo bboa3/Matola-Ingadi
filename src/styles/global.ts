@@ -9,7 +9,7 @@ export default createGlobalStyle`
 
 body {
   background: var(--color-white);
-  color: var(--color-primary);
+  color: var(--color-black);
   font-size: 1.8rem;
   font-family: 'Crimson Roman', Gentium Plus, sans-serif;
 
@@ -62,6 +62,7 @@ input {
 
 :root { 
     --color-white: #fff;
+    --color-black: #000;
     --color-blue: #15233E;
     --color-primary: #232136;
     --color-adjust: #603B5A;

@@ -25,7 +25,6 @@ import EventScheduleForm from '../components/EventScheduleForm';
 import WeddingImg from '../assets/images/casamento-ingadi.jpg'
 import WeddingPoolImg from '../assets/images/casamento-piscina.jpg'
 import WeddingNightImg from '../assets/images/casamento-luz-da-noite.jpg'
-
 import image1Img from '../assets/images/ai-vem-o-noivo.png'
 import image2Img from '../assets/images/weddings.jpg'
 

@@ -9,7 +9,7 @@ import {
 } from '../../assets/icons';
 
 interface Props {
-  images: string[]
+  images: StaticImageData[]
 }
 
 const AccessoriesCarousel: React.FC<Props> = memo(({images}) => {
@@ -56,8 +56,6 @@ const AccessoriesCarousel: React.FC<Props> = memo(({images}) => {
         {
           images.map((image, index) => (
             <Image 
-              width={600}
-              height={600}
               key={index} 
               src={image} 
               alt="Acessórios dos eventos"

@@ -35,14 +35,19 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
     setActiveSlide(activeSlide-1)
   }
 
-  const nextSlide = () => {
-    if(activeSlide === images.length - 1)
-    return setActiveSlide(0);
-    setActiveSlide(activeSlide + 1)
+  function nextSlide(): void {
+    if (activeSlide === images.length - 1)
+      return setActiveSlide(0);
+    setActiveSlide(activeSlide + 1);
   }
 
   useEffect(() => {
-    document.getElementById('slide').style.cssText = null;
+    images.forEach((_, index) => {
+      const id = `slide${index}`;
+      console.log(id);
+      
+      document.getElementById('slide').style.cssText = null;
+    })
 
     const timer = setTimeout(nextSlide, animationDelay);
     return () => clearTimeout(timer);
@@ -66,7 +71,7 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
                   layout="fill"
                   alt="Matola Ingadi"
                   key={index}
-                  id="slide active"
+                  id={`slide active`}
                   src={image}
                 />
               )
@@ -76,7 +81,7 @@ const PhotosCarousel: React.FC<Props> = React.memo(({
                   layout="fill"
                   alt="Matola Ingadi"
                   key={index}
-                  id='slide'
+                  id={`slide`}
                   src={image}
                   hidden
                 />

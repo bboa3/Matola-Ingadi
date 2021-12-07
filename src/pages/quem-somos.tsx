@@ -12,7 +12,6 @@ import {
 } from '../styles/pages/quem-somos'
 
 const  QuemSomos: React.FC = () => {
-  
   return (
     <div>
       <Head>

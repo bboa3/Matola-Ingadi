@@ -31,8 +31,6 @@ const History: React.FC<Props> = ({
     <Wedding>
       <div>
         <Image
-          width={3095}
-          height={4643}
           layout="responsive"
           src={image1} 
           alt={image1Alt}
@@ -61,8 +59,6 @@ const History: React.FC<Props> = ({
 
     <ImageContainer>
       <Image 
-        width={6016}
-        height={4016}
         layout="responsive"
         src={image2} 
         alt={image2Alt}
