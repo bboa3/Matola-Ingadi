@@ -1,4 +1,4 @@
-[Matola Ingadi](https://matolaingadi-eight.vercel.app/)
+[Matola Ingadi](https://matolaingadi.com/)
 
 ![](header.png)
 
